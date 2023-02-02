@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:27:59 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/01/31 15:46:14 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:28:09 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,43 +66,6 @@ int loop_func(t_all *cub)
     generate_3d(cub);
     dda(cub);
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img1, 0, 0); //image of window
-    // mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0); //img of minimap
+    mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0); //img of minimap
     return (0);
 }
-// int der(t_all *cub)
-// {
-//     if (key_rin == RIGHT || key_rin == LEFT)
-//     {
-//         printf("%d\n", key_rin);
-// 		event_left_right(cub, key_rin);
-//          draw_minimap(cub);
-//         put_big_player_circle(cub);
-//         make_rays(cub);
-//         mlx_clear_window(cub->mlx, cub->mlx_win);
-//         generate_3d(cub);
-//         dda(cub);
-//         mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img1, 0, 0); //image of window
-//         mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0);
-//         mlx_destroy_image(cub->mlx, cub->img);
-//         mlx_destroy_image(cub->mlx, cub->img1);
-//     }
-// 	else if (key_rin == UP || key_rin == DOWN)
-//     {
-// 		event_up_down(cub, key_rin);
-//          draw_minimap(cub);
-//         put_big_player_circle(cub);
-//         make_rays(cub);
-//         mlx_clear_window(cub->mlx, cub->mlx_win);
-//         generate_3d(cub);
-//         dda(cub);
-//         mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img1, 0, 0); //image of window
-//         mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0);
-//         mlx_destroy_image(cub->mlx, cub->img);
-//         mlx_destroy_image(cub->mlx, cub->img1); 
-//     }
-//     else if (cub->key_rin == 53)
-// 		exit_program(cub);
-//     else
-//         rotate_player(key_rin, cub);
-//     return(0);
-// }

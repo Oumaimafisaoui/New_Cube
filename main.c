@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:37 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/02 13:12:25 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:49:38 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ int main(int ac, char **av)
 		return (1);
 	if (allparsing(ac, av, data) == false)
 		return (1);
-	for (int i = 0; i < 3; i++){
-		printf("%s\n", data->floor[i]);
-		printf("%s\n", data->ceil[i]);
-	}
 	cub.map = data;
-	cub.walls = cub.map->allmap;
+	cub.walls = data->secondlines;
     cub.map_w = cub.map->biglength * CUBE;
-    cub.map_h = cub.map->countlines * CUBE;	
+    cub.map_h = cub.map->countsecondlines * CUBE;
+	printf("%f\n", cub.map_w);
+	printf("%f\n", cub.map_h);
     init(&cub);
     launch_mlx(&cub);
 }
