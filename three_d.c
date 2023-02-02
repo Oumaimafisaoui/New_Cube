@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/01 17:01:58 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 13:51:24 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void generate_3d(t_all *cub)
      int i;
      i = 0;
      void * img = mlx_xpm_file_to_image(cub->mlx, "xpmfile/SO.xpm", &w, &h);
+     
      if (!img)
      {
           printf("Error xpm file\n");
@@ -42,40 +43,29 @@ void generate_3d(t_all *cub)
          
           int wall_height = (int)cub->three.wall_projection;
           double wall_top_pix = (WINDOW_H / 2) - (wall_height / 2);
-          if(wall_top_pix < 0)
-               wall_top_pix = 0;
-          else
-               wall_top_pix += 0;
           double wall_bott_pix = (WINDOW_H / 2) + (wall_height / 2);
-          if(wall_bott_pix < 0)
-               wall_bott_pix = 0;
-          else
-               wall_bott_pix += 0;
-          for (int x = 0; x < wall_top_pix; x++)
-          {
-                my_mlx_pixel_put3(cub, i, x, create_trgb(1 ,atoi(cub->map.ceil[0]), atoi(cub->map.ceil[1]), atoi(cub->map.ceil[2])));
-          }
+          int x = -1;
+          while( ++x< wall_top_pix)
+                my_mlx_pixel_put3(cub, i, x, create_trgb(1 ,atoi(cub->map->ceil[0]), atoi(cub->map->ceil[1]), atoi(cub->map->ceil[2])));
           double j = wall_top_pix;
           double o_x;
-          
           if (cub->ray[i].hor == true)
                o_x = fmod(cub->ray[i].x , CUBE);
           else
                o_x = fmod(cub->ray[i].y , CUBE);
-          o_x = o_x / CUBE * w; //the hit point in horizontal
+          o_x = o_x / CUBE * w; //hasroha bin l 0 w l wall instead of the TTL
           double save = wall_top_pix;
           double o_y;
           while (j < wall_bott_pix)
           {
-               o_y = ((j - save) * h) / wall_height;//the hit point vertical
+               o_y = ((j - save) * h) / wall_height;
                // printf("-->%d\n", (int)o_y);
                my_mlx_pixel_put3(cub, i, (int)j, *((int *)(adr1 + ((int)o_y * w + ((int)o_x)))));
                j++;
           }
           for(int y = wall_bott_pix; y < WINDOW_H; y++)
           {
-
-               my_mlx_pixel_put3(cub, i, y, create_trgb(1 ,atoi(cub->map.floor[0]), atoi(cub->map.floor[1]), atoi(cub->map.floor[2])));
+               my_mlx_pixel_put3(cub, i, y, create_trgb(1 ,atoi(cub->map->floor[0]), atoi(cub->map->floor[1]), atoi(cub->map->floor[2])));
           }
           i++;
      }

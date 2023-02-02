@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 11:26:29 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/01 13:36:14 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:18:07 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,17 @@ void	*ft_calloc(size_t num, size_t size)
 
 }
 
-void	*ft_memset(void *str, int c, size_t len)
+void	*ft_memset(void *s, int c, size_t len)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < len)
 	{
-		((char *)str)[i] = c;
+		((char *)s)[i] = c;
 		i++;
 	}
-	return (str);
+	return (s);
 }
 
 void	ft_bzero(void *str, size_t n)

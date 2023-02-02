@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:37 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/01 17:03:53 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 13:12:25 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int main(int ac, char **av)
 		printf("%s\n", data->floor[i]);
 		printf("%s\n", data->ceil[i]);
 	}
-	cub.walls = cub.map.allmap;
-    cub.map_w = cub.map.biglength * CUBE;
-    cub.map_h = cub.map.countlines * CUBE;	
+	cub.map = data;
+	cub.walls = cub.map->allmap;
+    cub.map_w = cub.map->biglength * CUBE;
+    cub.map_h = cub.map->countlines * CUBE;	
     init(&cub);
     launch_mlx(&cub);
 }

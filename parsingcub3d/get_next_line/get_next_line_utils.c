@@ -5,76 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 18:05:19 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/01 17:07:05 by oufisaou         ###   ########.fr       */
+/*   Created: 2022/01/03 20:15:24 by oufisaou          #+#    #+#             */
+/*   Updated: 2023/02/02 13:29:52 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../cub3d.h"
+#include "get_next_line.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strjoin(char *str1, char *str2)
 {
-	const char	*str;
-	char		*ptr;
-	int			i;
+	size_t	index;
+	size_t	count;
+	char	*result;
 
-	str = (char *)src;
-	ptr = (char *)dst;
-	i = 0;
-	if (!dst && !src)
-		return (NULL);
-	while (n--)
+	if (!str1)
 	{
-		ptr[i] = str[i];
-		i++;
+		str1 = (char *)malloc(1 * sizeof(char));
+		str1[0] = '\0';
 	}
-	return (ptr);
+	if (!str1 || !str2)
+		return (NULL);
+	result = malloc ((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
+	if (result == NULL)
+		return (NULL);
+	index = -1;
+	count = 0;
+	if (str1)
+		while (str1[++index] != '\0')
+			result[index] = str1[index];
+	while (str2[count] != '\0')
+		result[index++] = str2[count++];
+	result[ft_strlen(str1) + ft_strlen(str2)] = '\0';
+	free(str1);
+	return (result);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strchr(char *string, int n)
 {
-	unsigned int	i;
-	unsigned char	*s;
-	unsigned char	*d;
+	int	index;
 
-	s = (unsigned char *)src;
-	d = (unsigned char *)dst;
-	i = 0;
-	if (!s && !d)
-		return (NULL);
-	if (src >= dst)
-		ft_memcpy(d, s, len);
-	else
-		while (i < len--)
-			d[len] = s[len];
-	return (dst);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int	i;
-	int	j;
-	int	sl1;
-	int	sl2;
-	char	*str;
-
-	i = -1;
-	j = 0;
-	if (!s1)
+	index = 0;
+	if (!string)
+		return (0);
+	if (n == '\0')
+		return ((char *)&string[ft_strlen(string)]);
+	while (string[index] != '\0')
 	{
-		sl2 = ft_strlen(s2);
-		str = ft_strdup(s2);
-		return (str);
+		if (string[index] == (char)n)
+			return ((char *)&string[index]);
+		index++;
 	}
-	sl1 = ft_strlen (s1);
-	sl2 = ft_strlen (s2);
-	str = (char *)malloc((sl1 + sl2 + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	while (++i < sl1)
-		str[i] = s1[i];
-	while (j < sl2)
-		str[i++] = s2[j++];
-	str[i] = '\0';
-	return (free(s1), str);
+	return (0);
 }

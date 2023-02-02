@@ -3,10 +3,10 @@
 
 
 
-SO ./xpmfile/EA.xpm
-NO ./xpmfile/NO.xpm
-WE ./xpmfile/SO.xpm
-EA ./xpmfile/WE.xpm
+SO xpmfile/SO.xpm
+NO xpmfile/NO.xpm
+WE xpmfile/WE.xpm
+EA xpmfile/EA.xpm
 
 
 

@@ -5,104 +5,102 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 20:18:36 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/01 13:33:02 by oufisaou         ###   ########.fr       */
+/*   Created: 2022/01/03 19:23:55 by oufisaou          #+#    #+#             */
+/*   Updated: 2023/02/02 13:30:06 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../cub3d.h"
+#include "get_next_line.h"
 
-int	get_back_slash_n(char *store_line)
+char	*ft_update_backup(char	*text_backup)
 {
-	int	i;
-
-	i = -1;
-	if (store_line)
-		while (store_line[++i])
-			if (store_line[i] == '\n')
-				return (1);
-	return (0);
-}
-
-char	*get_line_file(char *static_line, int fd)
-{
-	int		rd_bytes;
-	char	*store_line;
-
-	store_line = (char *)malloc(BUFFER_SIZE + 1);
-	if (!store_line)
-		return (NULL);
-	while (!get_back_slash_n(static_line))
-	{
-		rd_bytes = read(fd, store_line, BUFFER_SIZE);
-		if (rd_bytes == -1)
-			return (free(store_line), NULL);
-		if (rd_bytes == 0)
-			break ;
-		store_line[rd_bytes] = 0;
-		static_line = ft_strjoin(static_line, store_line);
-	}
-	if (store_line)
-		free(store_line);
-	return (static_line);
-}
-
-char	*rest_line(char *static_line)
-{
+	int		index;
 	int		count;
-	char	*tab;
-	int		size;
+	char	*new_backup_start;
 
-	count = 0;
-	if (!static_line)
+	index = 0;
+	while (*(text_backup + index) && *(text_backup + index) != '\n')
+		index++;
+	if (!(*(text_backup + index)))
+	{
+		free(text_backup);
 		return (NULL);
-	while (static_line[count] && static_line[count] != '\n')
-		count++;
-	if (!static_line[count])
-		return (free(static_line), NULL);
-	size = ft_strlen(static_line) - count;
-	if (size == 0)
-		size = 1;
-	tab = (char *)malloc(size);
-	if (!tab)
-		return (free(static_line), NULL);
-	if (size > 1)
-		ft_memmove(tab, &static_line[count + 1], size - 1);
-	tab[size - 1] = '\0';
-	if (ft_strlen(tab) == 0)
-		return (free(static_line), free(tab), NULL);
-	return (free(static_line), tab);
+	}
+	new_backup_start = malloc(sizeof(char) * (ft_strlen(text_backup) - index));
+	if (!new_backup_start)
+		return (NULL);
+	index++;
+	count = 0;
+	while (*(text_backup + index))
+		new_backup_start[count++] = text_backup[index++];
+	*(new_backup_start + count) = '\0';
+	free(text_backup);
+	return (new_backup_start);
 }
 
-char	*get_line_static(char *static_line)
+char	*ft_take_line(char *text_backup)
 {
-	int		i;
-	char	*line;
+	int		index;
+	char	*the_line;
 
-	i = 0;
-	while (static_line[i] && static_line[i] != '\n')
-		i++;
-	if (static_line[i] == '\n')
-		i++;
-	line = (char *)malloc(i + 1);
-	if (!line)
+	index = 0;
+	if (!(*(text_backup)))
 		return (NULL);
-	ft_memmove(line, static_line, i);
-	line[i] = '\0';
-	return (line);
+	while (*(text_backup + index) && (*(text_backup + index)) != '\n')
+		index++;
+	the_line = (char *)malloc(sizeof(char) * (index + 2));
+	if (!the_line)
+		return (NULL);
+	index = 0;
+	while (*(text_backup + index) && (*(text_backup + index)) != '\n')
+	{
+		*(the_line + index) = *(text_backup + index);
+		index++;
+	}
+	if (*(text_backup + index) == '\n')
+	{
+		*(the_line + index) = *(text_backup + index);
+		index++;
+	}
+	*(the_line + index) = '\0';
+	return (the_line);
+}
+
+char	*ft_read_backup(int fd, char *text_backup)
+{
+	int		bytes;
+	char	*text;
+
+	bytes = 1;
+	text = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!text)
+		return (NULL);
+	while ((!(ft_strchr(text_backup, '\n')) && bytes != 0))
+	{
+		bytes = read(fd, text, BUFFER_SIZE);
+		if (bytes == -1)
+		{
+			free(text);
+			return (NULL);
+		}
+		text[bytes] = '\0';
+		text_backup = ft_strjoin(text_backup, text);
+	}
+	free(text);
+	return (text_backup);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*static_line;
-	char		*line;
+	char		*the_line;
+	static char	*text_backup;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	text_backup = ft_read_backup(fd, text_backup);
+	if (!text_backup)
 		return (NULL);
-	static_line = get_line_file(static_line, fd);
-	if (!static_line || (static_line && *static_line == '\0'))
-		return (NULL);
-	line = get_line_static(static_line);
-	static_line = rest_line(static_line);
-	return (line);
+	the_line = ft_take_line(text_backup);
+	text_backup = ft_update_backup(text_backup);
+	return (the_line);
 }

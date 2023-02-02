@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/01 17:04:34 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 13:08:39 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ typedef struct s_cub
     int red;
     int purple;
 
-    t_data map; //added the data
+    t_data *map; //added the data
 } t_all;
 
 void init(t_all *cub);
