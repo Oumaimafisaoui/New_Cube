@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:57:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/02 14:28:03 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:24:32 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,22 @@ void init(t_all *cub)
     cub->player.speed = 7;
     cub->player.rotation_speed = 3 * (M_PI / 180); //3 degree per frame it is in radian
     cub->player.turn_direction = 0; // -1 OR 1
-    cub->player.walk_direction = 0;
-    // cub->map = NULL;
+    //texture we test
+    cub->we.img_w = 0;
+    cub->we.img_h = 0;
+    cub->we.bits_per_pixel = 0;
+    cub->we.line_length = 0;
+    cub->we.endian = 0;
+    cub->we.img2 = 0;
+   
+    cub->we.address = 0;
+    
+    cub->three.wall_bott_pix = 0;
+    cub->three.wall_top_pix = 0;
+    cub->three.wall_height = 0;
     init_suite0(cub);
     init_suite(cub);
 }
-
-
 void init_suite(t_all *cub)
 {
     cub->black = 0x00000000;

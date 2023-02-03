@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:49:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/01/30 19:45:11 by skasmi           ###   ########.fr       */
+/*   Updated: 2023/02/02 14:23:55 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 */
 void find_wall(t_all *cub, double x, double y)
 {
+    //convert to map mesures
     if(cub->walls[(int)y / CUBE][(int)x / CUBE] != '1' && (cub->walls[(int)y / CUBE][(int)cub->player.x / CUBE] != '1' && cub->walls[(int)cub->player.y / CUBE][(int)x / CUBE] != '1')) //ta9ato3
     {
         cub->player.x = x;
@@ -49,9 +50,7 @@ void check_walls2(t_all *cub, int flag)
 {
     int	x;
 	int	y;
-    int speed;
     
-    speed = cub->player.speed * -1;
     if(flag == 1)
     {
        x = cub->player.x + (cos(cub->player.ang) * cub->player.speed);
@@ -60,8 +59,8 @@ void check_walls2(t_all *cub, int flag)
     }
     else if(flag == 0)
     {
-        x = cub->player.x + (cos(cub->player.ang) * speed);
-        y =  cub->player.y + (sin(cub->player.ang) * speed);
+        x = cub->player.x - (cos(cub->player.ang) * cub->player.speed);
+        y =  cub->player.y - (sin(cub->player.ang) * cub->player.speed);
         find_wall(cub, x, y);
     }
 }
