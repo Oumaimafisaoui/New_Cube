@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 10:47:41 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:58:08 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,11 @@ int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
-
 void generate_3d(t_all *cub)
 {
      int i;
-     i = 0;  
-     cub->no.img2 =  mlx_xpm_file_to_image(cub->mlx, "xpmfile/wall.xpm", &cub->no.img_w, &cub->no.img_h);
-     cub->no.address = (unsigned int *)mlx_get_data_addr(cub->no.img2, &cub->no.bits_per_pixel, &cub->no.line_length, &cub->we.endian);
-     
-     cub->so.img2 =  mlx_xpm_file_to_image(cub->mlx, "xpmfile/EA.xpm", &cub->so.img_w, &cub->so.img_h);
-     cub->so.address = (unsigned int *)mlx_get_data_addr(cub->so.img2, &cub->so.bits_per_pixel, &cub->so.line_length, &cub->we.endian);
-
-     cub->ea.img2 =  mlx_xpm_file_to_image(cub->mlx, "xpmfile/SO.xpm", &cub->ea.img_w, &cub->ea.img_h);
-     cub->ea.address = (unsigned int *)mlx_get_data_addr(cub->ea.img2, &cub->ea.bits_per_pixel, &cub->ea.line_length, &cub->we.endian);
-     
-     cub->we.img2 =  mlx_xpm_file_to_image(cub->mlx, "xpmfile/WE.xpm", &cub->we.img_w, &cub->we.img_h);
-     cub->we.address = (unsigned int *)mlx_get_data_addr(cub->we.img2, &cub->we.bits_per_pixel, &cub->we.line_length, &cub->we.endian);
-
+     i = 0; 
+     init_textures(cub);
      while(i < cub->var_d.num_rays)
      {
           cub->three.d_player_pro = (WINDOW_W / 2) / tan(FEILD / 2);
