@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:57:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 10:24:32 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:38:11 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,32 @@ void init(t_all *cub)
     cub->we.line_length = 0;
     cub->we.endian = 0;
     cub->we.img2 = 0;
-   
     cub->we.address = 0;
-    
+
+    cub->ea.img_w = 0;
+    cub->ea.img_h = 0;
+    cub->ea.bits_per_pixel = 0;
+    cub->ea.line_length = 0;
+    cub->ea.endian = 0;
+    cub->ea.img2 = 0;
+    cub->ea.address = 0;
+
+    cub->no.img_w = 0;
+    cub->no.img_h = 0;
+    cub->no.bits_per_pixel = 0;
+    cub->no.line_length = 0;
+    cub->no.endian = 0;
+    cub->no.img2 = 0;
+    cub->no.address = 0;
+
+    cub->so.img_w = 0;
+    cub->so.img_h = 0;
+    cub->so.bits_per_pixel = 0;
+    cub->so.line_length = 0;
+    cub->so.endian = 0;
+    cub->so.img2 = 0;
+    cub->so.address = 0;
+
     cub->three.wall_bott_pix = 0;
     cub->three.wall_top_pix = 0;
     cub->three.wall_height = 0;
