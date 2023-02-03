@@ -6,24 +6,17 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 12:27:09 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:29:29 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
 
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void normalize(t_all *cub, int i)
-{
-     if (cub->ray[i].angle < 0){
-          cub->ray[i].angle = (2 * M_PI) + cub->ray[i].angle;
-     }
-}
 void generate_3d(t_all *cub)
 {
      int i;
@@ -53,6 +46,12 @@ void generate_3d(t_all *cub)
           i++;
      }
 }
+void normalize(t_all *cub, int i)
+{
+     if (cub->ray[i].angle < 0){
+          cub->ray[i].angle = (2 * M_PI) + cub->ray[i].angle;
+     }
+}
 
 void generate_textures(t_all *cub, int i)
 {
@@ -61,13 +60,11 @@ void generate_textures(t_all *cub, int i)
      double start = cub->three.wall_top_pix;
      double j = cub->three.wall_top_pix;
  
-     
-      if (cub->ray[i].hor == true)
-      {
+     if (cub->ray[i].hor == true)
+     {
           if(cub->ray[i].up == true)
           {
-               hit_x = fmod(cub->ray[i].x , CUBE);
-               hit_x = hit_x / CUBE * cub->no.img_w; //hasroha bin l 0 w l wall instead of the TTL
+               hit_x = fmod(cub->ray[i].x , CUBE) / CUBE * cub->no.img_w; //hasroha bin l 0 w l wall instead of the TTL
                while (j < cub->three.wall_bott_pix)
                {
                     // j - start :  the distance betcub->text->n the j and the top pixel
@@ -78,8 +75,7 @@ void generate_textures(t_all *cub, int i)
           }
           else if (cub->ray[i].down == true)
           {
-               hit_x = fmod(cub->ray[i].x , CUBE);
-               hit_x = hit_x / CUBE * cub->so.img_w; //hasroha bin l 0 w l wall instead of the TTL
+               hit_x = fmod(cub->ray[i].x , CUBE) / CUBE * cub->so.img_w; //hasroha bin l 0 w l wall instead of the TTL
                while (j < cub->three.wall_bott_pix)
                {
                     // j - start :  the distance betcub->text->n the j and the top pixel
@@ -89,24 +85,22 @@ void generate_textures(t_all *cub, int i)
                }
           }
       }
-      else
+      else if (cub->ray[i].hor == false)
       {
           if(cub->ray[i].right == true)
           {
-               hit_x = fmod(cub->ray[i].y , CUBE);
-               hit_x = hit_x / CUBE * cub->ea.img_w; //hasroha bin l 0 w l wall instead of the TTL
+               hit_x = fmod(cub->ray[i].y , CUBE) / CUBE * cub->ea.img_w; //hasroha bin l 0 w l wall instead of the TTL
                while (j < cub->three.wall_bott_pix)
                {
                     // j - start :  the distance betcub->text->n the j and the top pixel
-                    hit_y = ((j - start) * cub->ea.img_h) / cub->three.wall_height;
+                    hit_y = ((j - start) * (cub->ea.img_h) / cub->three.wall_height);
                     my_mlx_pixel_put3(cub, i, (int)j, *((int *)(cub->ea.address + ((int)hit_y * cub->ea.img_w + ((int)hit_x)))));
                     j++;
                }
           }
           else if (cub->ray[i].left == true)
           {
-               hit_x = fmod(cub->ray[i].y , CUBE);
-               hit_x = hit_x / CUBE * cub->we.img_w; //hasroha bin l 0 w l wall instwed of the TTL
+               hit_x = fmod(cub->ray[i].y , CUBE) / CUBE * cub->we.img_w; //hasroha bin l 0 w l wall instwed of the TTL
                while (j < cub->three.wall_bott_pix)
                {
                     // j - start :  the distance betcub->text->n the j and the top pixel

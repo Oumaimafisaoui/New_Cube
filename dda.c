@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 12:14:38 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:09:30 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ void decide_casting(t_all *cub, int j)
     {
             cub->var_d.x1 = cub->var_d.wallhitx1;
             cub->var_d.y1 = cub->var_d.wallhity1;
+            cub->ray[j].hor = false;
     }
     cub->var_d.xx1 = cub->player.x;
     cub->var_d.yy1 =  cub->player.y;
@@ -171,6 +172,7 @@ void find_short_distance(t_all *cub, int j)
     {
         cub->var_d.x1 = cub->var_d.wallhitx1;
         cub->var_d.y1 = cub->var_d.wallhity1;
+        cub->ray[j].hor = false;
     }
 }
 void horizontal_inter(t_all *cub)

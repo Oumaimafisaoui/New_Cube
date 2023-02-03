@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:49:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 12:08:14 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:30:15 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 void find_wall(t_all *cub, double x, double y)
 {
     //convert to map mesures
-    if(cub->walls[(int)y / CUBE][(int)x / CUBE] != '1' && (cub->walls[(int)y / CUBE][(int)cub->player.x / CUBE] != '1' && cub->walls[(int)cub->player.y / CUBE][(int)x / CUBE] != '1')) //ta9ato3
-    {
-        cub->player.x = x;
-        cub->player.y = y;
-    }
-    else
+    
+    if (cub->walls[(int)(y / CUBE)][(int)(x / CUBE)] == '1' || (cub->walls[(int)(y / CUBE)][(int)(cub->player.x / CUBE)] == '1' && cub->walls[(int)(cub->player.y / CUBE)][(int)(x / CUBE)] == '1'))
     {
         cub->player.x += 0;
         cub->player.y += 0;
+    }
+    else
+    {
+        cub->player.x = x;
+        cub->player.y = y;
     }
 }
 

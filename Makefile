@@ -1,6 +1,6 @@
 CC = cc
 RM = rm -rf
-XFLAGS = -Wall -Wextra -Werror  -Imlx -Ofast -ffast-math #-g -fsanitize=address,undefined
+XFLAGS = -Wall -Wextra -Werror  -Imlx -Ofast -ffast-math #ma-g -fsanitize=address,undefined
 
 SRC =  	parsingcub3d/libft/ft_split.c \
 		parsingcub3d/libft/ft_splitnewline.c\

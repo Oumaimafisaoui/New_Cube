@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:27:59 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 12:14:46 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:21:48 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,15 @@ void event_up_down(t_all *cub, int key)
 	if (key == UP)
         check_walls2(cub, 1);
 	else if(key == DOWN)
-        check_walls2(cub, 0);   
+        check_walls2(cub, 0);
 }
 
 void rotate_player(int key, t_all *cub)
 {
     if(key == 123)
-    {
-        normalize_player(cub);
         cub->player.ang -= cub->player.rotation_speed;
-        normalize_player(cub);
-    }
     else if (key == 124)
-    {
-        normalize_player(cub);
         cub->player.ang += cub->player.rotation_speed;
-        normalize_player(cub);
-    }
 }
 
 int	mouvements(int key, t_all *cub)
@@ -58,11 +50,6 @@ int	mouvements(int key, t_all *cub)
 		exit_program(cub);
     else
         rotate_player(key, cub);
-    return (1);
-}
-
-int loop_func(t_all *cub)
-{
     draw_minimap(cub);
     put_big_player_circle(cub);
     make_rays(cub);
@@ -71,5 +58,5 @@ int loop_func(t_all *cub)
     dda(cub);
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img1, 0, 0); //image of window
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0); //img of minimap
-    return (0);
+    return (1);
 }
