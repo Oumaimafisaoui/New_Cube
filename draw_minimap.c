@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:58:11 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/01/31 16:32:55 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:16:53 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void put_big_player_circle(t_all *cub)
     //x = cos(o) * h + xs
     //y = sin(o) * h + ys
     h = 1;
-    while(h < 5) // this h increments
+    while(h < 3) // this h increments
     {
         angle = 0;
         while(angle < 360)

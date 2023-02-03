@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:49:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/02 14:23:55 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:08:14 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void find_wall(t_all *cub, double x, double y)
         cub->player.x = x;
         cub->player.y = y;
     }
+    else
+    {
+        cub->player.x += 0;
+        cub->player.y += 0;
+    }
 }
+
 void check_walls1(t_all *cub, int flag, double angle)
 {
     double	x;

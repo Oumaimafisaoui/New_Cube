@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 10:38:01 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:27:15 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,4 +238,5 @@ void	ft_bzero(void *str, size_t n);
 
 void generate_textures(t_all *cub, int i);
 void init_textures(t_all *cub);
+void normalize(t_all *cub, int i);
 #endif

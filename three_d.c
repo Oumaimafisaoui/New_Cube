@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 10:58:08 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:27:09 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,28 @@ int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
+
+void normalize(t_all *cub, int i)
+{
+     if (cub->ray[i].angle < 0){
+          cub->ray[i].angle = (2 * M_PI) + cub->ray[i].angle;
+     }
+}
 void generate_3d(t_all *cub)
 {
      int i;
      i = 0; 
-     init_textures(cub);
      while(i < cub->var_d.num_rays)
      {
           cub->three.d_player_pro = (WINDOW_W / 2) / tan(FEILD / 2);
-          cub->ray[i].angle = fmod(cub->ray[i].angle,(2 * M_PI));
+          cub->ray[i].angle = fmod(cub->ray[i].angle ,(2 * M_PI));
+          normalize(cub, i);
           cub->three.ray_distance = cub->ray[i].distance * (cos(cub->ray[i].angle - cub->player.ang));
-          cub->ray[i].angle = fmod(cub->ray[i].angle,(2 * M_PI));
+          cub->ray[i].angle = fmod(cub->ray[i].angle ,(2 * M_PI));
+          normalize(cub, i);
           cub->three.wall_projection = (CUBE / cub->three.ray_distance) * cub->three.d_player_pro;
-          cub->ray[i].angle = fmod(cub->ray[i].angle,(2 * M_PI));
+          cub->ray[i].angle = fmod(cub->ray[i].angle ,(2 * M_PI));
+          normalize(cub, i);
           cub->three.wall_height = (int)cub->three.wall_projection;
           cub->three.wall_top_pix  = (WINDOW_H / 2) - (cub->three.wall_height / 2);
           cub->three.wall_bott_pix = (WINDOW_H / 2) + (cub->three.wall_height / 2);
@@ -94,7 +103,7 @@ void generate_textures(t_all *cub, int i)
                     j++;
                }
           }
-          else if (cub->ray[i].right == false)
+          else if (cub->ray[i].left == true)
           {
                hit_x = fmod(cub->ray[i].y , CUBE);
                hit_x = hit_x / CUBE * cub->we.img_w; //hasroha bin l 0 w l wall instwed of the TTL

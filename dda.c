@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/01 13:02:32 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:14:38 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void dda2(t_all *cub)
 
 void normalize_player(t_all *cub)
 {
-    cub->player.ang = fmod(cub->var_d.new_angle ,(2 * M_PI));
+    cub->player.ang = fmod(cub->player.ang ,(2 * M_PI));
     if (cub->player.ang < 0) {
         cub->player.ang = (2 * M_PI) + cub->player.ang;
     }

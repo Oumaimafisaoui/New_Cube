@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:27:59 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 10:57:56 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:14:46 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ void rotate_player(int key, t_all *cub)
 {
     if(key == 123)
     {
+        normalize_player(cub);
         cub->player.ang -= cub->player.rotation_speed;
+        normalize_player(cub);
     }
     else if (key == 124)
     {
+        normalize_player(cub);
         cub->player.ang += cub->player.rotation_speed;
+        normalize_player(cub);
     }
 }
 
