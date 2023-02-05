@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 12:27:15 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 14:27:40 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_three //struct dial 3d
 {
     double d_player_pro; //distance player projection li dwa 3liha pikuma
     double wall_projection; //wall projection li dwa 3liha pikuma
-    double ray_distance; //distamce bin ray w player
+    float ray_distance; //distamce bin ray w player
     double  wall_top_pix;
     double wall_bott_pix;
     int wall_height;

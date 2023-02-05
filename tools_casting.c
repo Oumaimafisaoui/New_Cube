@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_casting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:14:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/01/26 02:06:46 by skasmi           ###   ########.fr       */
+/*   Updated: 2023/02/05 14:34:50 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,21 @@
 void begining_horizontal(t_all *cub)
 {
     what_direction(cub);
+    normalize_rayangle(cub);
     cub->var_d.yinter = floor(cub->player.y / CUBE) * (double)CUBE;
     is_down(cub);
-    cub->var_d.xinter = cub->player.x + ((cub->var_d.yinter - cub->player.y) / tan(cub->var_d.new_angle));
+    printf("%f\n",cub->var_d.new_angle);
+    // if(tan(cub->var_d.new_angle))
+        cub->var_d.xinter = cub->player.x + ((cub->var_d.yinter - cub->player.y) / tan(cub->var_d.new_angle));
     cub->var_d.ysteps = CUBE;
     is_up(cub);
-    cub->var_d.xsteps = CUBE / tan(cub->var_d.new_angle);
+    // if(cub->var_d.new_angle != 0 && cub->var_d.new_angle != M_PI)
+    //     cub->var_d.xsteps = CUBE / (tan(cub->var_d.new_angle));
+    // else
+    // {
+        // cub->var_d.new_angle += (1 * (M_PI / 18));
+    cub->var_d.xsteps = CUBE /(tan(cub->var_d.new_angle));
+    // }
     is_left(cub);
     cub->var_d.next_x_inter = cub->var_d.xinter;
     cub->var_d.next_y_inter = cub->var_d.yinter;

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 19:09:30 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:22:45 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void make_rays(t_all *cub)
         vertical_inter(cub);
         decide_casting(cub, j);
         set_tab(j, cub);
+        // if(cub->ray[j].distance == 0)
+        //      cub->ray[j].distance = 0.1;
         reset_directions(cub);
         normalize_rayangle(cub);
         cub->var_d.new_angle += (FEILD / cub->var_d.num_rays);
@@ -105,7 +107,7 @@ void set_tab(int j, t_all *cub)
     cub->ray[j].angle = cub->var_d.new_angle;
     cub->ray[j].x = cub->var_d.x1;
     cub->ray[j].y = cub->var_d.y1;
-    cub->ray[j].distance = hypot(cub->var_d.x1 - cub->player.x, cub->var_d.y1 - cub->player.y);
+    cub->ray[j].distance = sqrt((cub->var_d.x1 - cub->player.x) * (cub->var_d.x1 - cub->player.x)+ ( (cub->var_d.y1 - cub->player.y) * (cub->var_d.y1 - cub->player.y)));
     cub->ray[j].down = cub->var_d.is_down;
     cub->ray[j].left = cub->var_d.is_left;
     cub->ray[j].right = cub->var_d.is_right;
@@ -146,7 +148,6 @@ void decide_casting(t_all *cub, int j)
     {
             cub->var_d.x1 = cub->var_d.wallhitx1;
             cub->var_d.y1 = cub->var_d.wallhity1;
-            cub->ray[j].hor = false;
     }
     cub->var_d.xx1 = cub->player.x;
     cub->var_d.yy1 =  cub->player.y;
@@ -183,7 +184,7 @@ void horizontal_inter(t_all *cub)
     {
         if (cub->var_d.is_up == 1)
         {
-            if(cub->walls[(int)((cub->var_d.next_y_inter - 1) / CUBE)][(int)(cub->var_d.next_x_inter / CUBE)] == '1')
+            if(cub->walls[(int)((cub->var_d.next_y_inter - (double)1) / CUBE)][(int)(cub->var_d.next_x_inter / CUBE)] == '1')
             {
                 cub->var_d.h_found_wall = 1;
                 cub->var_d.wallhitx = cub->var_d.next_x_inter;
@@ -212,7 +213,7 @@ void vertical_inter(t_all *cub)
     {
         if (cub->var_d.is_left == 1)
         {
-            if(cub->walls[(int)(cub->var_d.next_y_inter1 / CUBE)][(int)((cub->var_d.next_x_inter1 - 1) / CUBE)] == '1')
+            if(cub->walls[(int)(cub->var_d.next_y_inter1 / CUBE)][(int)((cub->var_d.next_x_inter1 - (double)1) / CUBE)] == '1')
             {
                 cub->var_d.v_found_wall = 1;
                 cub->var_d.wallhitx1 = cub->var_d.next_x_inter1;

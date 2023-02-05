@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 20:15:24 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/02 13:29:52 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 14:56:34 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strjoin(char *str1, char *str2)
 {
-	size_t	index;
+	int		index;
 	size_t	count;
 	char	*result;
 
@@ -25,7 +25,7 @@ char	*ft_strjoin(char *str1, char *str2)
 	}
 	if (!str1 || !str2)
 		return (NULL);
-	result = malloc ((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
+	result = malloc ((ft_strlen(str1) + ft_strlen(str2) + 1));
 	if (result == NULL)
 		return (NULL);
 	index = -1;

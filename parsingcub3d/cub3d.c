@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:31:02 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/01 15:56:22 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 11:29:48 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	readfromfile(char *mapname, t_data *data)
 	data->countlines = countlines(mapname);
 	if (data->countlines == -1)
 		return (false);
-	data->allmap = (char **)malloc(sizeof(char *) * data->countlines + 1);
+	data->allmap = (char **)malloc(sizeof(char *) * (data->countlines + 1));
 	if (!data->allmap)
 		return (false);
 	fd = open(mapname, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:49:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 15:30:15 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:26:59 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ void find_wall(t_all *cub, double x, double y)
 {
     //convert to map mesures
     
-    if (cub->walls[(int)(y / CUBE)][(int)(x / CUBE)] == '1' || (cub->walls[(int)(y / CUBE)][(int)(cub->player.x / CUBE)] == '1' && cub->walls[(int)(cub->player.y / CUBE)][(int)(x / CUBE)] == '1'))
+    if (cub->walls[(int)(y / CUBE)][(int)(x / CUBE)] == '1' ||\
+     (cub->walls[(int)(y / CUBE)][(int)(cub->player.x / CUBE)] == '1' && \
+     cub->walls[(int)(cub->player.y / CUBE)][(int)(x / CUBE)] == '1'))
     {
-        cub->player.x += 0;
-        cub->player.y += 0;
+       return ;
     }
     else
     {
@@ -37,14 +38,15 @@ void check_walls1(t_all *cub, int flag, double angle)
 
     if(flag == 1)
     {
-       x = (cub->player.x + (cos(angle) * cub->player.speed));
-       y = (cub->player.y + (sin(angle) * cub->player.speed));
+        
+       x = cub->player.x + (cos(angle) * cub->player.speed);
+       y = cub->player.y + (sin(angle) * cub->player.speed);
        find_wall(cub, x, y);
     }
     else if(flag == 0)
     {
-        x = (cub->player.x - (cos(angle) * cub->player.speed));
-        y =  (cub->player.y - (sin(angle) * cub->player.speed));
+        x = (cub->player.x - cos(angle) * cub->player.speed);
+        y =  (cub->player.y - sin(angle) * cub->player.speed) ;
         find_wall(cub, x, y);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:27:59 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/03 19:21:48 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:41:02 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void event_left_right(t_all *cub, int key)
     double angle;
 
     angle = cub->player.ang + (90 * (M_PI / 180));
+    if (angle > 2 * M_PI)
+        angle -= (2 * M_PI);
+    if (angle < 0)
+        angle += (2 * M_PI);
 	if (key == RIGHT) 
         check_walls1(cub, 1, angle);
 	else if (key == LEFT) 
@@ -41,7 +45,7 @@ void rotate_player(int key, t_all *cub)
 
 int	mouvements(int key, t_all *cub)
 {
-    (void)cub;
+    normalize_player(cub);
 	if (key == RIGHT || key == LEFT)
 		event_left_right(cub, key);
 	else if (key == UP || key == DOWN)
@@ -50,12 +54,16 @@ int	mouvements(int key, t_all *cub)
 		exit_program(cub);
     else
         rotate_player(key, cub);
+    normalize_player(cub);
     draw_minimap(cub);
     put_big_player_circle(cub);
     make_rays(cub);
+    // puts("rays");
     mlx_clear_window(cub->mlx, cub->mlx_win);
     generate_3d(cub);
+    // puts("3D");
     dda(cub);
+    // puts("D/DA");
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img1, 0, 0); //image of window
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0); //img of minimap
     return (1);
