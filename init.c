@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:57:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 14:08:55 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 20:09:50 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,10 @@ void launch_mlx(t_all *cub)
     init_textures(cub);
     generate_3d(cub);
     dda(cub);
+
+
+
+    
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img1, 0, 0);
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0);
     mlx_hook(cub->mlx_win, 2, 1L , mouvements, cub);

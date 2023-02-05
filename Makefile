@@ -37,8 +37,8 @@ ${NAME} : ${OBJ} ${LIB}
 		${CC} -g ${XFLAGS} ${OBJ}  -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 		
 %.o : %.c ${LIB}
-	${CC} -g ${XFLAGS} -c $< -o $@
-
+	@${CC} -g ${XFLAGS} -c $< -o $@
+	@printf "[compiling : %-30s] \r" $(notdir $@)
 clean:
 	${RM} ${OBJ}
 
@@ -48,3 +48,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean fclean re all
+.SILENT: ${NAME} clean fclean re

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:14:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 14:34:50 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:10:28 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void begining_horizontal(t_all *cub)
     normalize_rayangle(cub);
     cub->var_d.yinter = floor(cub->player.y / CUBE) * (double)CUBE;
     is_down(cub);
-    printf("%f\n",cub->var_d.new_angle);
     // if(tan(cub->var_d.new_angle))
-        cub->var_d.xinter = cub->player.x + ((cub->var_d.yinter - cub->player.y) / tan(cub->var_d.new_angle));
+    cub->var_d.xinter = cub->player.x + ((cub->var_d.yinter - cub->player.y) / tan(cub->var_d.new_angle));
     cub->var_d.ysteps = CUBE;
     is_up(cub);
     // if(cub->var_d.new_angle != 0 && cub->var_d.new_angle != M_PI)

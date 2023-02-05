@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:49:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 15:26:59 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/05 18:19:08 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void find_wall(t_all *cub, double x, double y)
     }
     else
     {
+        printf("the y of the pos: %f\n", cub->player.y);
+        printf("the x of the pos: %f\n", cub->player.x);
+        printf("%f\n", cub->player.ang);
         cub->player.x = x;
         cub->player.y = y;
     }
@@ -38,10 +41,20 @@ void check_walls1(t_all *cub, int flag, double angle)
 
     if(flag == 1)
     {
+        // if(cub->player.ang == M_PI / 2)
+        // {
+            x = cub->player.x + (cos(angle) * cub->player.speed);
+            y = cub->player.y + (sin(angle) * cub->player.speed);
+            find_wall(cub, x, y);
+        // }
+        // else if(cub->player.ang == 0)
+        // {
+        //     x = x;
+        //     y = cub->player.y + (sin(angle) * cub->player.speed);
+        //     find_wall(cub, x, y);
+        // }
+        // else
         
-       x = cub->player.x + (cos(angle) * cub->player.speed);
-       y = cub->player.y + (sin(angle) * cub->player.speed);
-       find_wall(cub, x, y);
     }
     else if(flag == 0)
     {
