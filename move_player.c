@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:27:59 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 13:41:02 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:03:26 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ void event_left_right(t_all *cub, int key)
 {
     double angle;
 
-    angle = cub->player.ang + (90 * (M_PI / 180));
+    angle = cub->player.ang + (90.0 * (M_PI / 180.0));
     if (angle > 2 * M_PI)
         angle -= (2 * M_PI);
     if (angle < 0)

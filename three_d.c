@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 15:45:58 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:04:23 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ void generate_3d(t_all *cub)
      i = 0; 
      while(i < cub->var_d.num_rays)
      {
-          cub->three.d_player_pro = (WINDOW_W / 2) / tan(FEILD / 2);
+          cub->three.d_player_pro = (WINDOW_W / 2.0) / tan(FEILD / 2.0);
           normalize(cub, i);
           cub->three.ray_distance = cub->ray[i].distance * (cos(cub->ray[i].angle - cub->player.ang));
           cub->ray[i].angle = fmod(cub->ray[i].angle ,(2 * M_PI));
           normalize(cub, i);
-          // if(cub->three.ray_distance == 0)
-          // {
-          //      cub->three.ray_distance  = 0.001;
-          // if(cub->three.ray_distance)
+          // if(cub->three.ray_distance == 0.0)
+          //      cub->three.ray_distance  = 15;
           cub->three.wall_projection = ((float)CUBE / cub->three.ray_distance) * cub->three.d_player_pro;
           // else
           //      cub->three.wall_projection = CUBE * cub->three.d_player_pro;

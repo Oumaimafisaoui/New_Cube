@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 15:33:47 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:07:28 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ void reset_directions(t_all *cub)
 void decide_casting(t_all *cub, int j)
 {
     cub->ray[j].hor = false;
-    cub->var_d.distance_hor_wall = hypot(cub->var_d.wallhitx - cub->player.x, cub->var_d.wallhity - cub->player.y);
-    cub->var_d.distance_ver_wall = hypot(cub->var_d.wallhitx1 - cub->player.x, cub->var_d.wallhity1 - cub->player.y);
+    cub->var_d.distance_hor_wall = sqrt((cub->var_d.wallhitx - cub->player.x) * (cub->var_d.wallhitx - cub->player.x)+ ( (cub->var_d.wallhity - cub->player.y) * (cub->var_d.wallhity - cub->player.y)));
+    cub->var_d.distance_ver_wall = sqrt((cub->var_d.wallhitx1 - cub->player.x) * (cub->var_d.wallhitx1 - cub->player.x)+ ( (cub->var_d.wallhity1 - cub->player.y) * (cub->var_d.wallhity1 - cub->player.y)));
     if (cub->var_d.h_found_wall && cub->var_d.v_found_wall)
         find_short_distance(cub, j);
     else if (cub->var_d.h_found_wall)

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:57:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 20:09:50 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:08:57 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void init(t_all *cub)
     cub->player.x = 0;
     cub->player.y = 0;
     cub->player.ang = M_PI;
-    cub->player.speed = 3;
+    cub->player.speed = 1.0;
     cub->player.rotation_speed = 3 * (M_PI / 180); //3 degree per frame it is in radian
     cub->player.turn_direction = 0; // -1 OR 1
     //texture we test

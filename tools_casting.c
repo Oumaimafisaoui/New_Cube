@@ -6,20 +6,22 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:14:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 16:10:28 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:13:53 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
+#define epsilon 1e-7
 void begining_horizontal(t_all *cub)
 {
     what_direction(cub);
     normalize_rayangle(cub);
     cub->var_d.yinter = floor(cub->player.y / CUBE) * (double)CUBE;
     is_down(cub);
-    // if(tan(cub->var_d.new_angle))
-    cub->var_d.xinter = cub->player.x + ((cub->var_d.yinter - cub->player.y) / tan(cub->var_d.new_angle));
+    // if(tan(cub->var_d.new_angle) - 0.0 <= epsilon)
+    //      cub->var_d.xinter = cub->player.x + ((cub->var_d.yinter - cub->player.y));
+    // else
+         cub->var_d.xinter = cub->player.x + ((cub->var_d.yinter - cub->player.y) / tan(cub->var_d.new_angle));
     cub->var_d.ysteps = CUBE;
     is_up(cub);
     // if(cub->var_d.new_angle != 0 && cub->var_d.new_angle != M_PI)
@@ -27,7 +29,10 @@ void begining_horizontal(t_all *cub)
     // else
     // {
         // cub->var_d.new_angle += (1 * (M_PI / 18));
-    cub->var_d.xsteps = CUBE /(tan(cub->var_d.new_angle));
+    // if(tan(cub->var_d.new_angle) - 0.0 <= epsilon)
+    //     cub->var_d.xsteps = CUBE;
+    // else
+        cub->var_d.xsteps = CUBE /(tan(cub->var_d.new_angle));
     // }
     is_left(cub);
     cub->var_d.next_x_inter = cub->var_d.xinter;

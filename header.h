@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 15:51:42 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:14:50 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 #define DOWN 1
 #define RIGHT 2
 #define LEFT 0
-#define WINDOW_W 1920
-#define WINDOW_H 1080
+#define WINDOW_W 1080
+#define WINDOW_H 720
 
 typedef struct s_player
 {

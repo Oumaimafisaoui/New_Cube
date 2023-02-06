@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:49:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 18:19:08 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:09:48 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void find_wall(t_all *cub, double x, double y)
     }
     else
     {
-        printf("the y of the pos: %f\n", cub->player.y);
-        printf("the x of the pos: %f\n", cub->player.x);
-        printf("%f\n", cub->player.ang);
         cub->player.x = x;
         cub->player.y = y;
     }
@@ -70,8 +67,8 @@ void check_walls1(t_all *cub, int flag, double angle)
 
 void check_walls2(t_all *cub, int flag)
 {
-    int	x;
-	int	y;
+   double 	x;
+double	y;
     
     if(flag == 1)
     {
