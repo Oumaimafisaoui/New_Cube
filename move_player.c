@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:27:59 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/06 11:03:26 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:52:20 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	mouvements(int key, t_all *cub)
     mlx_clear_window(cub->mlx, cub->mlx_win);
     generate_3d(cub);
     // puts("3D");
-    dda(cub);
+    // dda(cub);
     // puts("D/DA");
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img1, 0, 0); //image of window
     mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img, 0, 0); //img of minimap

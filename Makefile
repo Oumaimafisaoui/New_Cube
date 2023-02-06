@@ -1,6 +1,6 @@
 CC = cc
 RM = rm -rf
-XFLAGS = -Wall -Wextra -Werror  -Imlx -Ofast -ffast-math -g -fsanitize=address,undefined,integer
+CFLAGS = -Wall -Wextra -Werror  -Imlx -Ofast -ffast-math 
 
 SRC =  	parsingcub3d/libft/ft_split.c \
 		parsingcub3d/libft/ft_splitnewline.c\
@@ -34,10 +34,10 @@ LIB  = header.h parsingcub3d/cub3d.h
 all : ${NAME}
 
 ${NAME} : ${OBJ} ${LIB}
-		${CC} -g ${XFLAGS} ${OBJ}  -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+		${CC} -g ${CFLAGS} ${OBJ}  -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 		
 %.o : %.c ${LIB}
-	@${CC} -g ${XFLAGS} -c $< -o $@
+	@${CC} -g ${CFLAGS} -c $< -o $@
 	@printf "[compiling : %-30s] \r" $(notdir $@)
 clean:
 	${RM} ${OBJ}

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:58:11 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 16:21:38 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:49:38 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,6 @@ void draw_minimap(t_all *cub)
             {
                 while(cub->map_y < (cub->map_i * CUBE) + CUBE) //while the height is less than the end of the square  
                      draw_grid(cub, cub->black, cub->yellow);
-            }
-            else if(cub->walls[cub->map_i][cub->map_j] == '0')
-            {
-                while(cub->map_y < (cub->map_i * CUBE) + CUBE) 
-                     draw_grid(cub, cub->black, cub->purple);
-            }
-            else
-            {
-                while(cub->map_y < (cub->map_i * CUBE) + CUBE) 
-                     draw_grid(cub, cub->black, cub->red);
             }
             cub->map_j++;
         }
