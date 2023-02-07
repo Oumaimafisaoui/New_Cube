@@ -5,55 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 20:15:24 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 14:56:34 by oufisaou         ###   ########.fr       */
+/*   Created: 2022/01/17 18:05:19 by ataji             #+#    #+#             */
+/*   Updated: 2023/02/07 20:04:33 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../cub3d.h"
 
-char	*ft_strjoin(char *str1, char *str2)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int		index;
-	size_t	count;
-	char	*result;
+	const char	*str;
+	char		*ptr;
+	int			i;
 
-	if (!str1)
+	str = (char *)src;
+	ptr = (char *)dst;
+	i = 0;
+	if (!dst && !src)
+		return (NULL);
+	while (n--)
 	{
-		str1 = (char *)malloc(1 * sizeof(char));
-		str1[0] = '\0';
+		ptr[i] = str[i];
+		i++;
 	}
-	if (!str1 || !str2)
-		return (NULL);
-	result = malloc ((ft_strlen(str1) + ft_strlen(str2) + 1));
-	if (result == NULL)
-		return (NULL);
-	index = -1;
-	count = 0;
-	if (str1)
-		while (str1[++index] != '\0')
-			result[index] = str1[index];
-	while (str2[count] != '\0')
-		result[index++] = str2[count++];
-	result[ft_strlen(str1) + ft_strlen(str2)] = '\0';
-	free(str1);
-	return (result);
+	return (ptr);
 }
 
-char	*ft_strchr(char *string, int n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	index;
+	unsigned int	i;
+	unsigned char	*s;
+	unsigned char	*d;
 
-	index = 0;
-	if (!string)
-		return (0);
-	if (n == '\0')
-		return ((char *)&string[ft_strlen(string)]);
-	while (string[index] != '\0')
+	s = (unsigned char *)src;
+	d = (unsigned char *)dst;
+	i = 0;
+	if (!s && !d)
+		return (NULL);
+	if (src >= dst)
+		ft_memcpy(d, s, len);
+	else
+		while (i < len--)
+			d[len] = s[len];
+	return (dst);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+	size_t	sl1;
+	size_t	sl2;
+	char	*str;
+
+	i = -1;
+	j = 0;
+	if (!s1)
 	{
-		if (string[index] == (char)n)
-			return ((char *)&string[index]);
-		index++;
+		sl2 = ft_strlen(s2);
+		str = ft_strdup(s2);
+		return (str);
 	}
-	return (0);
+	sl1 = ft_strlen (s1);
+	sl2 = ft_strlen (s2);
+	str = (char *)malloc((sl1 + sl2 + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	while (++i < sl1)
+		str[i] = s1[i];
+	while (j < sl2)
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	return (free(s1), str);
 }
