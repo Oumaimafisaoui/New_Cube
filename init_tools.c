@@ -6,14 +6,14 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:13:23 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 14:21:55 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:01:49 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
 
-void init_suite2(t_all *cub)
+void	init_suite2(t_all *cub)
 {
 	cub->ea.img_w = 0;
 	cub->ea.img_h = 0;
@@ -62,7 +62,7 @@ void init_suite(t_all *cub)
 	init_suite1(cub);
 }
 
-void init_suite0(t_all *cub)
+void	init_suite0(t_all *cub)
 {
 	cub->var_d.x1 = 0;
 	cub->var_d.y1 = 0;
@@ -89,7 +89,7 @@ void init_suite0(t_all *cub)
 	cub->ray->distance = 0;
 }
 
-void init_suite1(t_all *cub)
+void	init_suite1(t_all *cub)
 {
 	cub->var_d.wallhitx = 0;
 	cub->var_d.wallhity = 0;
@@ -109,6 +109,10 @@ void init_suite1(t_all *cub)
 	cub->var_d.next_y_inter1 = 0;
 	cub->var_d.distance_hor_wall = 0;
 	cub->var_d.distance_ver_wall = 0;
+	cub->hit_x = 0;
+	cub->hit_y = 0;
+	cub->hit_x1 = 0;
+	cub->hit_y1 = 0;
 }
 
 int	ref(int key, t_all *cub)

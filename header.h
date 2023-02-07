@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 15:24:00 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:00:59 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,10 @@ typedef struct s_cub
 	int			yellow;
 	int			red;
 	int			purple;
+	double		hit_x;
+	double		hit_y;
+	double		hit_x1;
+	double		hit_y1;
 	t_data		*map;
 	t_text		we;
 	t_text		ea;
@@ -218,4 +222,6 @@ void	init_textures(t_all *cub);
 void	normalize(t_all *cub, int i);
 void	launch_norm(t_all *cub);
 int		ref(int key, t_all *cub);
+void	hor_texture(t_all *cub, int i, int start, double j);
+void	ver_texture(t_all *cub, int i, double start, double j);
 #endif

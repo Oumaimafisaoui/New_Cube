@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 15:34:07 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:47:28 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,63 +72,16 @@ void	normalize(t_all *cub, int i)
 	}
 }
 
-
-
 void	generate_textures(t_all *cub, int i)
 {
-	double	hit_x;
-	double	hit_y;
-	double	start;
 	double	j;
-	
-	j= cub->three.wall_top_pix;
-	start = cub->three.wall_top_pix;
+	double	start;
 
+	start = cub->three.wall_top_pix;
+	j = cub->three.wall_top_pix - 1;
 	if (cub->ray[i].hor == true)
-	{
-		if (cub->ray[i].up == true)
-		{
-			hit_x = fmod(cub->ray[i].x, CUBE) / CUBE * (double)cub->no.img_w;
-			while (j < cub->three.wall_bott_pix)
-			{
-				hit_y = ((j - start) * cub->no.img_h) / (double)cub->three.wall_height;
-				my_mlx_pixel_put3(cub, i, (int)j, *((int *)(cub->no.address + ((int)hit_y * cub->no.img_w + (int)hit_x))));
-				j++;
-			}
-		}
-		else if (cub->ray[i].down == true)
-		{
-			hit_x = fmod(cub->ray[i].x, CUBE) / CUBE * cub->so.img_w;
-			while (j < cub->three.wall_bott_pix)
-			{
-				hit_y = ((j - start) * cub->so.img_h) / (double)cub->three.wall_height;
-				my_mlx_pixel_put3(cub, i, (int)j, *((int *)(cub->so.address + ((int)hit_y * cub->so.img_w + (int)hit_x))));
-				j++;
-			}
-		}
-	}
+		hor_texture(cub, i, start, j);
 	else
-	{
-		if (cub->ray[i].right == true)
-		{
-			hit_x = fmod(cub->ray[i].y, CUBE) / CUBE * cub->ea.img_w;
-			while (j < cub->three.wall_bott_pix)
-			{
-				hit_y = ((j - start) * (cub->ea.img_h) / (double)cub->three.wall_height);
-				my_mlx_pixel_put3(cub, i, (int)j, *((int *)(cub->ea.address + ((int)hit_y * cub->ea.img_w + ((int)hit_x)))));
-				j++;
-			}
-		}
-		else if (cub->ray[i].left == true)
-		{
-			hit_x = fmod(cub->ray[i].y, CUBE) / CUBE * cub->we.img_w;
-			while (j < cub->three.wall_bott_pix)
-			{
-				hit_y = ((j - start) * cub->we.img_h) / (double)cub->three.wall_height;
-				my_mlx_pixel_put3(cub, i, (int)j, *((int *)(cub->we.address + ((int)hit_y * cub->we.img_w + ((int)hit_x)))));
-				j++;
-			}
-		}
-	}
-	return;
+		ver_texture(cub, i, start, j);
+	return ;
 }

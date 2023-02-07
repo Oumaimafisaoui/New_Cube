@@ -30,6 +30,7 @@ SRC =  	parsingcub3d/libft/ft_split.c \
 		draw_tools.c \
 		init_tools.c \
 		ray_tools_suite.c \
+		three_d_tools.c
 
 OBJ = ${SRC:.c=.o}
 NAME = cub3D
