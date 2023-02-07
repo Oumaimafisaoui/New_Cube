@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:06:27 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:19:51 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	hor_texture(t_all *cub, int i, int start, double j)
 		cub->hit_x = fmod(cub->ray[i].x, CUBE) / CUBE * (double)cub->no.img_w;
 		while (++j < cub->three.wall_bott_pix)
 		{
-			cub->hit_y = ((j - start) * cub->no.img_h)\
+			cub->hit_y = ((j - start) * cub->no.img_h) \
 			/ (double)cub->three.wall_height;
 			my_mlx_pixel_put3(cub, i, (int)j, \
 			*((int *)(cub->no.address + ((int)cub->hit_y * \
@@ -74,7 +74,7 @@ int	create_trgb(int t, int r, int g, int b)
 void	calculate_projection(t_all *cub, int i)
 {
 	cub->three.d_player_pro = (WINDOW_W / 2.0) / \
-	tan((FEILD* (M_PI / 180)) / 2.0);
+	tan((FEILD * (M_PI / 180)) / 2.0);
 	normalize(cub, i);
 	cub->three.ray_distance = cub->ray[i].distance * \
 	(cos(cub->ray[i].angle - cub->player.ang));
@@ -116,27 +116,4 @@ void	generate_3d(t_all *cub)
 			y++;
 		}
 	}
-}
-
-void	normalize(t_all *cub, int i)
-{
-	cub->ray[i].angle = fmod(cub->ray[i].angle, (2 * M_PI));
-	if (cub->ray[i].angle < 0)
-	{
-		cub->ray[i].angle = (2 * M_PI) + cub->ray[i].angle;
-	}
-}
-
-void	generate_textures(t_all *cub, int i)
-{
-	double	j;
-	double	start;
-
-	start = cub->three.wall_top_pix;
-	j = cub->three.wall_top_pix - 1;
-	if (cub->ray[i].hor == true)
-		hor_texture(cub, i, start, j);
-	else
-		ver_texture(cub, i, start, j);
-	return ;
 }

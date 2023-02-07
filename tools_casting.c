@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:14:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 15:17:53 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:18:44 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,27 @@ void	begining_vertical(t_all *cub)
 	is_up2(cub);
 	cub->var_d.next_x_inter1 = cub->var_d.xinter1;
 	cub->var_d.next_y_inter1 = cub->var_d.yinter1;
+}
+
+void	normalize(t_all *cub, int i)
+{
+	cub->ray[i].angle = fmod(cub->ray[i].angle, (2 * M_PI));
+	if (cub->ray[i].angle < 0)
+	{
+		cub->ray[i].angle = (2 * M_PI) + cub->ray[i].angle;
+	}
+}
+
+void	generate_textures(t_all *cub, int i)
+{
+	double	j;
+	double	start;
+
+	start = cub->three.wall_top_pix;
+	j = cub->three.wall_top_pix - 1;
+	if (cub->ray[i].hor == true)
+		hor_texture(cub, i, start, j);
+	else
+		ver_texture(cub, i, start, j);
+	return ;
 }

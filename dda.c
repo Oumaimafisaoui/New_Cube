@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:07:34 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:37:31 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	dda2(t_all *cub)
 		i++;
 	}
 }
+
 void	make_rays(t_all *cub)
 {
 	int		j;
@@ -36,7 +37,7 @@ void	make_rays(t_all *cub)
 	j = 0;
 	angle = cub->player.ang;
 	cub->var_d.num_rays = WINDOW_W;
-	cub->var_d.new_angle = angle - ((FEILD* (M_PI / 180)) / 2);
+	cub->var_d.new_angle = angle - ((FEILD * (M_PI / 180)) / 2);
 	normalize_rayangle(cub);
 	while (j < cub->var_d.num_rays)
 	{
@@ -46,22 +47,10 @@ void	make_rays(t_all *cub)
 		set_tab(j, cub);
 		reset_directions(cub);
 		normalize_rayangle(cub);
-		cub->var_d.new_angle += ((FEILD* (M_PI / 180)) / cub->var_d.num_rays);
+		cub->var_d.new_angle += ((FEILD * (M_PI / 180)) / cub->var_d.num_rays);
 		normalize_rayangle(cub);
 		j++;
 	}
-}
-
-void	calculate_casting(t_all *cub)
-{
-	cub->var_d.distance_hor_wall = sqrt((cub->var_d.wallhitx - cub->player.x) \
-	* (cub->var_d.wallhitx - cub->player.x) + \
-	((cub->var_d.wallhity - cub->player.y)\
-	* (cub->var_d.wallhity - cub->player.y)));
-	cub->var_d.distance_ver_wall = sqrt((cub->var_d.wallhitx1 - cub->player.x) \
-	* (cub->var_d.wallhitx1 - cub->player.x) + \
-	((cub->var_d.wallhity1 - cub->player.y)\
-	* (cub->var_d.wallhity1 - cub->player.y)));
 }
 
 void	decide_casting(t_all *cub, int j)
@@ -111,21 +100,20 @@ void	horizontal_inter(t_all *cub)
 		if (cub->walls[(int)((cub->var_d.next_y_inter) / CUBE)][(int)
 		(cub->var_d.next_x_inter / CUBE)] == '1')
 		{
-			cub->var_d.h_found_wall = 1;
-			cub->var_d.wallhitx = cub->var_d.next_x_inter;
-			cub->var_d.wallhity = cub->var_d.next_y_inter;
+			horizontal_condition(cub);
 			break ;
 		}
-		cub->var_d.next_x_inter += cub->var_d.xsteps;
-		cub->var_d.next_y_inter += cub->var_d.ysteps;
+		inter_suite(cub);
 	}
 }
 
 void	vertical_inter(t_all *cub)
 {
 	begining_vertical(cub);
-	while (cub->var_d.next_x_inter1 >= 0 && cub->var_d.next_x_inter1 < cub->map_w \
-	&& cub->var_d.next_y_inter1 >= 0 && cub->var_d.next_y_inter1 < cub->map_h)
+	while (cub->var_d.next_x_inter1 >= 0 && \
+	cub->var_d.next_x_inter1 < cub->map_w \
+	&& cub->var_d.next_y_inter1 >= 0 && \
+	cub->var_d.next_y_inter1 < cub->map_h)
 	{
 		if (cub->var_d.is_left == 1)
 		{
@@ -141,12 +129,9 @@ void	vertical_inter(t_all *cub)
 		if (cub->walls[(int)(cub->var_d.next_y_inter1 / CUBE)][(int)
 		(cub->var_d.next_x_inter1 / CUBE)] == '1')
 		{
-			cub->var_d.v_found_wall = 1;
-			cub->var_d.wallhitx1 = cub->var_d.next_x_inter1;
-			cub->var_d.wallhity1 = cub->var_d.next_y_inter1;
+			vertical_condition(cub);
 			break ;
 		}
-		cub->var_d.next_x_inter1 += cub->var_d.xsteps1;
-		cub->var_d.next_y_inter1 += cub->var_d.ysteps1;
+		inter_suite1(cub);
 	}
 }

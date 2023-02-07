@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:53:36 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 11:55:55 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:38:31 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,16 @@ void	ft_error(char *str)
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
 	exit(EXIT_FAILURE);
+}
+
+void	calculate_casting(t_all *cub)
+{
+	cub->var_d.distance_hor_wall = sqrt((cub->var_d.wallhitx - cub->player.x) \
+	* (cub->var_d.wallhitx - cub->player.x) + \
+	((cub->var_d.wallhity - cub->player.y) \
+	* (cub->var_d.wallhity - cub->player.y)));
+	cub->var_d.distance_ver_wall = sqrt((cub->var_d.wallhitx1 - cub->player.x) \
+	* (cub->var_d.wallhitx1 - cub->player.x) + \
+	((cub->var_d.wallhity1 - cub->player.y) \
+	* (cub->var_d.wallhity1 - cub->player.y)));
 }

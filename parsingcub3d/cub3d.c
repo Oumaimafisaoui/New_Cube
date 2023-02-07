@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:31:02 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/05 11:29:48 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:17:05 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,31 @@ bool	readfromfile(char *mapname, t_data *data)
 		data->allmap[data->i] = get_next_line(fd);
 	data->allmap[data->i] = NULL;
 	close (fd);
+	return (true);
+}
+
+bool	parsemap(t_data *data)
+{
+	if (parsefirstofmap(data) == false)
+		return (false);
+	if (parsesecondofmap(data) == false)
+		return (false);
+	if (parsecharsecondmap(data) == false)
+		return (false);
+	return (true);
+}
+
+bool	allparsing(int ac, char **av, t_data *data)
+{
+	if (check_arguments(ac, av[1]) == false)
+		return (false);
+	if (readfromfile(av[1], data) == false)
+		return (false);
+	data->countfirstlines = countlinesfirstmap(data);
+	data->countsecondlines = countlinessecondmap(data);
+	if (dividingmap(data) == false)
+		return (false);
+	if (parsemap(data) == false)
+		return (false);
 	return (true);
 }

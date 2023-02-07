@@ -6,13 +6,13 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:37 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 18:59:15 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:19:05 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_all	cub;
 	t_data	*data;

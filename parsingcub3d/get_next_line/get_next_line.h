@@ -6,17 +6,17 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:56:21 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/02 13:25:00 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:15:45 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-#define BUFFER_SIZE 10
+# define BUFFER_SIZE 10
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 char	*get_next_line(int fd);
 char	*ft_read_backup(int fd, char *text_backup);

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:04:44 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:38:17 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,10 +216,17 @@ void	set_tab(int j, t_all *cub);
 void	my_mlx_pixel_put3(t_all *cub, int x, int y, int color);
 void	*ft_calloc(size_t num, size_t size);
 void	ft_bzero(void *str, size_t n);
-void 	init_suite2(t_all *cub);
+void	init_suite2(t_all *cub);
 void	generate_textures(t_all *cub, int i);
 void	init_textures(t_all *cub);
 void	normalize(t_all *cub, int i);
 void	launch_norm(t_all *cub);
 int		ref(int key, t_all *cub);
+void	inter_suite(t_all *cub);
+void	inter_suite1(t_all *cub);
+void	vertical_condition(t_all *cub);
+void	horizontal_condition(t_all *cub);
+void	hor_texture(t_all *cub, int i, int start, double j);
+void	ver_texture(t_all *cub, int i, double start, double j);
+void	calculate_casting(t_all *cub);
 #endif

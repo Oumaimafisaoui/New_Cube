@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:28:32 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/01 15:41:44 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:16:52 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ enum
 	NO
 };
 
-
 typedef struct s_img
 {
 	void	*img;
@@ -68,7 +67,6 @@ typedef struct s_img
 	int		width;
 	int		heigth;
 }	t_img;
-
 
 typedef struct s_data
 {

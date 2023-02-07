@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:46:13 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 16:07:48 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:17:24 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	hor_texture(t_all *cub, int i, int start, double j)
 		cub->hit_x = fmod(cub->ray[i].x, CUBE) / CUBE * (double)cub->no.img_w;
 		while (++j < cub->three.wall_bott_pix)
 		{
-			cub->hit_y = ((j - start) * cub->no.img_h)\
+			cub->hit_y = ((j - start) * cub->no.img_h) \
 			/ (double)cub->three.wall_height;
 			my_mlx_pixel_put3(cub, i, (int)j, \
 			*((int *)(cub->no.address + ((int)cub->hit_y * \

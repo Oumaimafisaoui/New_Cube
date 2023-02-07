@@ -6,14 +6,13 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:13:23 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:05:51 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:19:34 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-
-void init_suite2(t_all *cub)
+void	init_suite2(t_all *cub)
 {
 	cub->ea.img_w = 0;
 	cub->ea.img_h = 0;
@@ -40,7 +39,8 @@ void init_suite2(t_all *cub)
 	cub->three.wall_top_pix = 0;
 	cub->three.wall_height = 0;
 }
-void init_suite(t_all *cub)
+
+void	init_suite(t_all *cub)
 {
 	cub->black = 0x00000000;
 	cub->yellow = 0x00FFFF00;
@@ -62,7 +62,7 @@ void init_suite(t_all *cub)
 	init_suite1(cub);
 }
 
-void init_suite0(t_all *cub)
+void	init_suite0(t_all *cub)
 {
 	cub->var_d.x1 = 0;
 	cub->var_d.y1 = 0;
@@ -89,7 +89,7 @@ void init_suite0(t_all *cub)
 	cub->ray->distance = 0;
 }
 
-void init_suite1(t_all *cub)
+void	init_suite1(t_all *cub)
 {
 	cub->var_d.wallhitx = 0;
 	cub->var_d.wallhity = 0;

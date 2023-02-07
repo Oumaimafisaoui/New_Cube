@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:58:11 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 13:41:40 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:21:57 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_grid(t_all *cub, int grid, int fill)
 	cub->map_x = cub->map_j * CUBE;
 	while (cub->map_x < (cub->map_j * CUBE) + CUBE)
 	{
-		if (cub->map_y % CUBE == 0 || cub->map_x % CUBE == 0) // put black line
+		if (cub->map_y % CUBE == 0 || cub->map_x % CUBE == 0)
 			my_mlx_pixel_put2(cub, cub->map_x, cub->map_y, grid);
 		else
 			my_mlx_pixel_put2(cub, cub->map_x, cub->map_y, fill);
@@ -50,9 +50,9 @@ void	draw_grid(t_all *cub, int grid, int fill)
 	cub->map_y++;
 }
 
-void draw_minimap(t_all *cub)
+void	draw_minimap(t_all *cub)
 {
-	while (cub->map_i < cub->map_h / CUBE) 
+	while (cub->map_i < cub->map_h / CUBE)
 	{
 		cub->map_j = 0;
 		while (cub->map_j < cub->map_w / CUBE)
