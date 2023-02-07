@@ -6,11 +6,65 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 15:47:28 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:06:27 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	hor_texture(t_all *cub, int i, int start, double j)
+{
+	if (cub->ray[i].up == true)
+	{
+		cub->hit_x = fmod(cub->ray[i].x, CUBE) / CUBE * (double)cub->no.img_w;
+		while (++j < cub->three.wall_bott_pix)
+		{
+			cub->hit_y = ((j - start) * cub->no.img_h)\
+			/ (double)cub->three.wall_height;
+			my_mlx_pixel_put3(cub, i, (int)j, \
+			*((int *)(cub->no.address + ((int)cub->hit_y * \
+			cub->no.img_w + (int)cub->hit_x))));
+		}
+	}
+	else if (cub->ray[i].down == true)
+	{
+		cub->hit_x = fmod(cub->ray[i].x, CUBE) / CUBE * cub->so.img_w;
+		while (++j < cub->three.wall_bott_pix)
+		{
+			cub->hit_y = ((j - start) * cub->so.img_h) / \
+			(double)cub->three.wall_height;
+			my_mlx_pixel_put3(cub, i, (int)j, *((int *)(cub->so.address \
+			+ ((int)cub->hit_y * cub->so.img_w + (int)cub->hit_x))));
+		}
+	}
+}
+
+void	ver_texture(t_all *cub, int i, double start, double j)
+{
+	if (cub->ray[i].right == true)
+	{
+		cub->hit_x1 = fmod(cub->ray[i].y, CUBE) / CUBE * cub->ea.img_w;
+		while (++j < cub->three.wall_bott_pix)
+		{
+			cub->hit_y1 = ((j - start) * (cub->ea.img_h) / \
+			(double)cub->three.wall_height);
+			my_mlx_pixel_put3(cub, i, (int)j, *((int *)(cub->ea.address + \
+			((int)cub->hit_y1 * cub->ea.img_w + ((int)cub->hit_x1)))));
+		}
+	}
+	else if (cub->ray[i].left == true)
+	{
+		cub->hit_x1 = fmod(cub->ray[i].y, CUBE) / CUBE * cub->we.img_w;
+		while (++j < cub->three.wall_bott_pix)
+		{
+			cub->hit_y1 = ((j - start) * cub->we.img_h) / \
+			(double)cub->three.wall_height;
+			my_mlx_pixel_put3(cub, i, (int)j, \
+			*((int *)(cub->we.address + ((int)cub->hit_y1 \
+			* cub->we.img_w + ((int)cub->hit_x1)))));
+		}
+	}
+}
 
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -19,7 +73,8 @@ int	create_trgb(int t, int r, int g, int b)
 
 void	calculate_projection(t_all *cub, int i)
 {
-	cub->three.d_player_pro = (WINDOW_W / 2.0) / tan(FEILD / 2.0);
+	cub->three.d_player_pro = (WINDOW_W / 2.0) / \
+	tan((FEILD* (M_PI / 180)) / 2.0);
 	normalize(cub, i);
 	cub->three.ray_distance = cub->ray[i].distance * \
 	(cos(cub->ray[i].angle - cub->player.ang));

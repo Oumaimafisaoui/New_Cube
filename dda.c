@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 13:39:39 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:07:34 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	dda2(t_all *cub)
 		i++;
 	}
 }
-
 void	make_rays(t_all *cub)
 {
 	int		j;
@@ -37,7 +36,7 @@ void	make_rays(t_all *cub)
 	j = 0;
 	angle = cub->player.ang;
 	cub->var_d.num_rays = WINDOW_W;
-	cub->var_d.new_angle = angle - (FEILD / 2);
+	cub->var_d.new_angle = angle - ((FEILD* (M_PI / 180)) / 2);
 	normalize_rayangle(cub);
 	while (j < cub->var_d.num_rays)
 	{
@@ -47,15 +46,14 @@ void	make_rays(t_all *cub)
 		set_tab(j, cub);
 		reset_directions(cub);
 		normalize_rayangle(cub);
-		cub->var_d.new_angle += (FEILD / cub->var_d.num_rays);
+		cub->var_d.new_angle += ((FEILD* (M_PI / 180)) / cub->var_d.num_rays);
 		normalize_rayangle(cub);
 		j++;
 	}
 }
 
-void	decide_casting(t_all *cub, int j)
+void	calculate_casting(t_all *cub)
 {
-	cub->ray[j].hor = false;
 	cub->var_d.distance_hor_wall = sqrt((cub->var_d.wallhitx - cub->player.x) \
 	* (cub->var_d.wallhitx - cub->player.x) + \
 	((cub->var_d.wallhity - cub->player.y)\
@@ -64,6 +62,12 @@ void	decide_casting(t_all *cub, int j)
 	* (cub->var_d.wallhitx1 - cub->player.x) + \
 	((cub->var_d.wallhity1 - cub->player.y)\
 	* (cub->var_d.wallhity1 - cub->player.y)));
+}
+
+void	decide_casting(t_all *cub, int j)
+{
+	cub->ray[j].hor = false;
+	calculate_casting(cub);
 	if (cub->var_d.h_found_wall && cub->var_d.v_found_wall)
 		find_short_distance(cub, j);
 	else if (cub->var_d.h_found_wall)

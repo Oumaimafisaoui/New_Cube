@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 16:00:59 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:04:44 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define CUBE 10
 # define VIEW 100
-# define FEILD (60 * (M_PI / 180))
+# define FEILD 60
 # define UP 13
 # define DOWN 1
 # define RIGHT 2
@@ -222,6 +222,4 @@ void	init_textures(t_all *cub);
 void	normalize(t_all *cub, int i);
 void	launch_norm(t_all *cub);
 int		ref(int key, t_all *cub);
-void	hor_texture(t_all *cub, int i, int start, double j);
-void	ver_texture(t_all *cub, int i, double start, double j);
 #endif
