@@ -25,7 +25,11 @@ SRC =  	parsingcub3d/libft/ft_split.c \
 		ray_tools.c\
 		tools_casting.c\
 		cub3d_outils.c draw_minimap.c init.c move_player.c dda.c check_walls.c \
-		three_d.c
+		three_d.c \
+		dda_tools.c \
+		draw_tools.c \
+		init_tools.c \
+		ray_tools_suite.c \
 
 OBJ = ${SRC:.c=.o}
 NAME = cub3D

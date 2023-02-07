@@ -6,21 +6,21 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:53:36 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/01 13:30:02 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:55:55 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-
-void ft_putstr_fd(char *str, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
-	if(!str)
+	if (!str)
 		return ;
-	while(*str)
+	while (*str)
 		write(fd, str++, 1);
 	return ;
 }
+
 int	exit_program(t_all *cub)
 {
 	int	index;

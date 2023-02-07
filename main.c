@@ -6,16 +6,15 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:37 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/05 11:30:00 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:25:08 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-
 int main(int ac, char **av)
 {
-    t_all cub;
+    t_all	cub;
     t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
@@ -25,8 +24,8 @@ int main(int ac, char **av)
 		return (1);
 	cub.map = data;
 	cub.walls = data->secondlines;
-    cub.map_w = cub.map->biglength * CUBE;
-    cub.map_h = cub.map->countsecondlines * CUBE;
-    init(&cub);
-    launch_mlx(&cub);
+	cub.map_w = cub.map->biglength * CUBE;
+	cub.map_h = cub.map->countsecondlines * CUBE;
+	init(&cub);
+	launch_mlx(&cub);
 }
