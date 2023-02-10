@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:32:08 by ataji             #+#    #+#             */
-/*   Updated: 2023/01/14 23:00:48 by ataji            ###   ########.fr       */
+/*   Updated: 2023/02/10 18:05:03 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,7 @@ void	addspaces(t_data *data)
 {
 	size_t	i;
 	size_t	len;
-	char	**saver;
 
-	saver = (char **)malloc(sizeof(char *) * data->countsecondlines + 1);
-	if (!saver)
-		return ;
 	i = 0;
 	while (data->secondlines[i])
 	{

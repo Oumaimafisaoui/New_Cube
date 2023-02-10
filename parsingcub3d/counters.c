@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   counters.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 11:51:16 by ataji             #+#    #+#             */
-/*   Updated: 2023/01/14 23:50:37 by ataji            ###   ########.fr       */
+/*   Updated: 2023/02/10 17:47:53 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int	countlines(char *mapname)
 	line = get_next_line(fd);
 	if (!line)
 		return (printf("ERROR : Empty map\n"), -1);
-	count = 1;
 	free(line);
+	count = 1;
 	while (1)
 	{
 		line = get_next_line(fd);

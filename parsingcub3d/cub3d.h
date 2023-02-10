@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:28:32 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/07 19:16:52 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:24:19 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,6 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	int				texturex;
-	int				texturey;
-	double			distanceprojplane;
-	double			projectionwallheight;
-	int				wallstripheight;
-	double			walltoppixel;
-	double			wallbottompixel;
 	int				norm;
 	int				nor;
 	char			**allmap;
@@ -94,10 +87,6 @@ typedef struct s_data
 	int				f;
 	char			**ceil;
 	char			**floor;
-	char			*east;
-	char			*south;
-	char			*north;
-	char			*west;
 	int				counter;
 	int				x;
 	size_t			biglength;

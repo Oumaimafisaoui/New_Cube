@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:53:36 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:38:31 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:35:25 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	exit_program(t_all *cub)
 		index++;
 	}
 	free(cub->walls);
+	free(cub->ray);
+	free(cub->map);
 	exit(0);
 }
 
