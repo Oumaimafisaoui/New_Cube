@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 11:51:16 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/11 19:06:17 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:33:32 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int	countlines(char *mapname)
 			break ;
 		count++;
 	}
-	free(line);
 	close (fd);
 	return (count);
 }

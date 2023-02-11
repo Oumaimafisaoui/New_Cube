@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 22:10:20 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/11 19:29:23 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:33:08 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ bool	parsefirstofmap(t_data *data)
 	char	**texturecolor;
 
 	initdirectioncolor(data);
-	// texturecolor = (char **)malloc(sizeof(char *) * 7);
-	// if (!texturecolor)
-	// 	return (false);
 	texturecolor = NULL;
 	data->x = 0;
 	while (data->x < data->countfirstlines)
@@ -57,10 +54,7 @@ bool	parsefirstofmap(t_data *data)
 			if (countargs(data->firstlines[data->x]) != 2)
 				return (printf(ERRFIRSTMAP), false);
 			texturecolor = ft_split(data->firstlines[data->x], ' ');
-			// printf("<%s>\n", texturecolor[1]);
 			texturecolor[1] = ft_strcpy(texturecolor[1], texturecolor[1]);
-			// printf("<%s>\n", texturecolor[1]);
-			// while (1);
 			if (checkkeys(data, texturecolor) == false)
 				return (false);
 			ft_free(texturecolor);
