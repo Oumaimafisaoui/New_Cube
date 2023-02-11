@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:19:51 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:41:56 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ver_texture(t_all *cub, int i, double start, double j)
 	}
 }
 
-int	create_trgb(int t, int r, int g, int b)
+int	trgb_integer(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
@@ -104,14 +104,14 @@ void	generate_3d(t_all *cub)
 		x = -1;
 		while (++x < cub->three.wall_top_pix)
 			my_mlx_pixel_put3(cub, i, x, \
-			create_trgb(1, atoi(cub->map->ceil[0]), \
+			trgb_integer(1, atoi(cub->map->ceil[0]), \
 			atoi(cub->map->ceil[1]), atoi(cub->map->ceil[2])));
 		generate_textures(cub, i);
 		y = cub->three.wall_bott_pix;
 		while (y < WINDOW_H)
 		{
 			my_mlx_pixel_put3(cub, i, y, \
-			create_trgb(1, atoi(cub->map->floor[0]), \
+			trgb_integer(1, atoi(cub->map->floor[0]), \
 			atoi(cub->map->floor[1]), atoi(cub->map->floor[2])));
 			y++;
 		}

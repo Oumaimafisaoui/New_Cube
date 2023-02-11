@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:13:23 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:19:34 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:38:59 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_suite2(t_all *cub)
 
 void	init_suite(t_all *cub)
 {
-	cub->black = 0x00000000;
+	cub->black = 0xFF000000;
 	cub->yellow = 0x00FFFF00;
 	cub->red = 0x00FF3333;
 	cub->purple = 0x009966FF;

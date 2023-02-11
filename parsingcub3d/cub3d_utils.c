@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:32:08 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/10 18:05:03 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:28:59 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*returnline_aa(char *str, size_t len)
 		}
 	}
 	ret[i] = '\0';
+	free(str);
 	return (ret);
 }
 

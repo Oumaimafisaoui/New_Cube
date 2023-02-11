@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:28:32 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/10 14:24:19 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:25:24 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int		ft_strcmp(const char *str1, const char *str2);
 size_t	ft_strlen(char const *str);
 int		ft_atoi(const char *str);
 char	*ft_strdup(const char *s1);
-char	*ft_strcpy(char *dest, const char *src);
+char	*ft_strcpy(char *dest, char *src);
 char	*ft_strchr(const char *s, int c);
 int		ft_isdigit(int c);
 
@@ -242,7 +242,7 @@ void	settexture(t_data *data, char **elements);
 // void	render_wall_3d(t_data *data);
 // void	render_rays(t_data *data);
 // void	clear_color_buffer(t_data *data, int color);
-// int		create_trgb(int t, int r, int g, int b);
+// int		trgb_integer(int t, int r, int g, int b);
 // void	img_no(t_data *data, int i, int j, int x);
 // void	img_so(t_data *data, int i, int j, int x);
 // void	img_we(t_data *data, int i, int j, int x);

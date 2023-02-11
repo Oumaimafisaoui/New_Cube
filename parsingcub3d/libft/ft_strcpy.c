@@ -6,13 +6,13 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 12:17:38 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/05 11:31:26 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:25:02 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+char	*ft_strcpy(char *dest, char *src)
 {
 	size_t	i;
 
@@ -29,5 +29,6 @@ char	*ft_strcpy(char *dest, const char *src)
 	i = 0;
 	while (src[i] != '\0')
 		i++;
+	free(src);
 	return (dest);
 }

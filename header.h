@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:38:17 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:35:37 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,6 @@ typedef struct s_cub
 
 void	init(t_all *cub);
 void	init_suite(t_all *cub);
-int		der(t_all *cub);
 void	ft_error(char *str);
 void	launch_mlx(t_all *cub);
 void	draw_minimap(t_all *cub);
@@ -199,13 +198,11 @@ void	reset_directions(t_all *cub);
 void	decide_casting(t_all *cub, int j);
 void	vertical_inter(t_all *cub);
 void	normalize_and_direction(t_all *cub);
-void	end_decide_casting(t_all *cub);
 void	begining_horizontal(t_all *cub);
 void	begining_vertical(t_all *cub);
 void	find_short_distance(t_all *cub, int j);
 void	init_suite1(t_all *cub);
 void	init_suite0(t_all *cub);
-int		loop_func(t_all *cub);
 void	find_wall(t_all *cub, double x, double y);
 void	reset_variables(t_all *cub);
 void	generate_3d(t_all *cub);

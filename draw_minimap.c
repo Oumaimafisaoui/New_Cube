@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:58:11 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:21:57 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:37:17 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put2(t_all *cub, int x, int y, int color)
 	{
 		dst = cub->addr + ((y * cub->line_length) + \
 		(x * (cub->bits_per_pixel / 8)));
-		*(unsigned int *)dst = color + (20 << 24);
+		*(unsigned int *)dst = color;
 	}
 }
 
