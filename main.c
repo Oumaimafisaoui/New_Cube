@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:37 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/11 19:30:33 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:49:33 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	main(int ac, char **av)
 		return (1);
 	if (allparsing(ac, av, data) == false)
 		return (1);
-	ft_free(data->firstlines);
-	ft_free(data->allmap);
 	cub.map = data;
 	cub.walls = data->secondlines;
 	cub.map_w = cub.map->biglength * CUBE;

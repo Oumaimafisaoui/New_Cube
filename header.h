@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/10 19:35:37 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:26:33 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,6 @@ void	generate_textures(t_all *cub, int i);
 void	init_textures(t_all *cub);
 void	normalize(t_all *cub, int i);
 void	launch_norm(t_all *cub);
-int		ref(int key, t_all *cub);
 void	inter_suite(t_all *cub);
 void	inter_suite1(t_all *cub);
 void	vertical_condition(t_all *cub);

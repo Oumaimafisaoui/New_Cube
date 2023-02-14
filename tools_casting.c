@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:14:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/07 19:18:44 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:56:47 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	begining_horizontal(t_all *cub)
 {
 	what_direction(cub);
-	normalize_rayangle(cub);
 	cub->var_d.yinter = floor(cub->player.y / CUBE) * (double)CUBE;
 	is_down(cub);
 	cub->var_d.xinter = cub->player.x + \

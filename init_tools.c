@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:13:23 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/11 18:38:59 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:31:09 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,4 @@ void	init_suite1(t_all *cub)
 	cub->hit_y = 0;
 	cub->hit_x1 = 0;
 	cub->hit_y1 = 0;
-}
-
-int	ref(int key, t_all *cub)
-{
-	(void)cub;
-	if (key == 13 || key == 1 || key == 0 || key == 2)
-		key = -1;
-	return (0);
 }
