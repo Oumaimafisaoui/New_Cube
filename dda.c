@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/12 19:04:15 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:15:03 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	make_rays(t_all *cub)
 		decide_casting(cub, j);
 		set_tab(j, cub);
 		reset_directions(cub);
-		normalize_rayangle(cub);
 		cub->var_d.new_angle += ((FEILD * (M_PI / 180)) / cub->var_d.num_rays);
 		normalize_rayangle(cub);
 		j++;

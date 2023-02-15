@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:18:49 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/12 15:26:33 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:32:23 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ typedef struct s_player
 	double	y;
 	double	ang;
 	double	speed;
-	double	turn_direction;
-	double	walk_direction;
 	double	rotation_speed;
-	double	view;
 }	t_player;
 
 typedef struct s_ddavar

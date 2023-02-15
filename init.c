@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:57:34 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/13 15:03:11 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:32:33 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init(t_all *cub)
 	cub->player.ang = M_PI;
 	cub->player.speed = 3.0;
 	cub->player.rotation_speed = 3 * (M_PI / 180);
-	cub->player.turn_direction = 0;
 	cub->we.img_w = 0;
 	cub->we.img_h = 0;
 	cub->we.bits_per_pixel = 0;

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:13:23 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/12 18:31:09 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:33:04 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	init_suite0(t_all *cub)
 	cub->var_d.steps = 0;
 	cub->var_d.dx = 0;
 	cub->var_d.dy = 0;
-	cub->player.view = FEILD * (M_PI / 180);
 	cub->map_i = 0;
 	cub->map_j = 0;
 	cub->map_x = 0;
