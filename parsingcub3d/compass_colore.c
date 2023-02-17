@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:55:37 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/10 18:15:22 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:09:30 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	checkfile(char **elements)
 	if (fd < 0)
 	{
 		perror ("ERROR ");
-		return (false);
+		exit(1);
 	}
 	size = ft_strlen(elements[1]);
 	if (elements[1][size - 1] != 'm' || elements[1][size - 2] != 'p'

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:55:40 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/15 15:17:10 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:21:16 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	hor_texture(t_all *cub, int i, int start, double j)
 	}
 	else if (cub->ray[i].down == true)
 	{
-		cub->hit_x = fmod(cub->ray[i].x, CUBE) * cub->so.img_w  / CUBE;
+		cub->hit_x = fmod(cub->ray[i].x, CUBE) * cub->so.img_w / CUBE;
 		while (++j < cub->three.wall_bott_pix)
 		{
 			cub->hit_y = ((j - start) * cub->so.img_h) / \

@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:31:02 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/11 19:29:46 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:09:47 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ bool	check_arguments(int numofargs, char *mapname)
 	if (check_point(mapname) == true)
 	{
 		lastmap = ft_split(mapname, '.');
+		//TODO: double point
 		if (ft_strcmp(lastmap[1], "cub"))
 			return (printf(ERRNAME), false);
 	}
@@ -45,7 +46,7 @@ bool	readfromfile(char *mapname, t_data *data)
 	if (fd < 0)
 	{
 		perror("ERROR ");
-		return (false);
+		exit(1);
 	}
 	while (++data->i < data->countlines)
 		data->allmap[data->i] = get_next_line(fd);
