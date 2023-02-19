@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   counters.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 11:51:16 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/17 13:09:38 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:11:00 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	all_errors(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		write(2, &str[i++], 1);
+	exit(1);
+}
 
 int	countargs(char *firstline)
 {
@@ -85,13 +95,10 @@ int	countlines(char *mapname)
 
 	fd = open(mapname, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("ERROR ");
-		exit(1);
-	}
+		all_errors(ERRFILE);
 	line = get_next_line(fd);
 	if (!line)
-		return (printf("ERROR : Empty map\n"), -1);
+		return (-1);
 	free(line);
 	count = 1;
 	while (1)

@@ -6,7 +6,7 @@
 /*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:59:13 by ataji             #+#    #+#             */
-/*   Updated: 2023/01/15 13:30:48 by ataji            ###   ########.fr       */
+/*   Updated: 2023/02/19 17:56:35 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	checkrightleftchar(char *line)
 		if (line[i] == '0' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E'
 			|| line[i] == 'N')
 			if (line[i - 1] == ' ' || line[i + 1] == ' ' || line[i + 1] == '\0')
-				return (printf(INVMAP), false);
+				all_errors(INVMAP);
 	}
 	return (true);
 }
@@ -56,7 +56,7 @@ bool	checkbottomtopchar(char **line, t_data *data)
 	i = -1;
 	(void)data;
 	if (checkfirstandlastline(line, data) == false)
-		return (printf(INVMAP), false);
+		all_errors(INVMAP);
 	while (line[++i])
 	{
 		j = -1;
@@ -66,7 +66,7 @@ bool	checkbottomtopchar(char **line, t_data *data)
 			if (helper == '0' || helper == 'S' || helper == 'W' || helper == 'E'
 				|| helper == 'N')
 				if (line[i - 1][j] == ' ' || line[i + 1][j] == ' ')
-					return (printf(INVMAP), false);
+					all_errors(INVMAP);
 		}
 	}
 	return (true);
@@ -87,7 +87,7 @@ bool	checkfirstchar(t_data *data)
 		helper = data->secondlines[i][j];
 		if (helper == '0' || helper == 'S' || helper == 'W' || helper == 'E'
 			|| helper == 'N')
-			return (printf(INVMAP), false);
+			all_errors(INVMAP);
 	}
 	return (true);
 }
@@ -97,12 +97,9 @@ bool	checkchar(t_data *data)
 	int	i;
 
 	i = -1;
-	if (checkfirstchar(data) == false)
-		return (false);
+	checkfirstchar(data);
 	while (data->secondlines[++i])
-		if (checkrightleftchar(data->secondlines[i]) == false)
-			return (false);
-	if (checkbottomtopchar(data->secondlines, data) == false)
-		return (false);
+		checkrightleftchar(data->secondlines[i]);
+	checkbottomtopchar(data->secondlines, data);
 	return (true);
 }

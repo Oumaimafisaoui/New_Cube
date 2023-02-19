@@ -3,107 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   compass_colore.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:55:37 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/17 13:09:30 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:12:17 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	checkrgb(t_data *data, char **elements)
+bool	checkrgb(t_data *data, char *elements, char *colors)
 {
-	if (!ft_strcmp(elements[0], "F"))
-	{
-		if (checkcoloref(data, elements) == false)
-			return (false);
-		data->f++;
-	}
-	if (!ft_strcmp(elements[0], "C"))
-	{
-		if (checkcolorec(data, elements) == false)
-			return (false);
-		data->c++;
-	}
+	if (!ft_strcmp(elements, "F"))
+		checkcoloref(data, colors);
+	if (!ft_strcmp(elements, "C"))
+		checkcolorec(data, colors);
 	return (true);
 }
 
-bool	checkfile(char **elements)
+bool	checkfile(char *elements)
 {
 	int		fd;
 	size_t	size;
 
-	fd = open(elements[1], O_RDONLY);
+	fd = open(elements, O_RDONLY);
 	if (fd < 0)
-	{
-		perror ("ERROR ");
-		exit(1);
-	}
-	size = ft_strlen(elements[1]);
-	if (elements[1][size - 1] != 'm' || elements[1][size - 2] != 'p'
-		|| elements[1][size - 3] != 'x' || elements[1][size - 4] != '.')
-	{
-		printf(ERRIMGNAME);
-		return (false);
-	}
+		all_errors(ERRFILE);
+	size = ft_strlen(elements);
+	if (elements[size - 1] != 'm' || elements[size - 2] != 'p'
+		|| elements[size - 3] != 'x' || elements[size - 4] != '.')
+		all_errors(ERRIMGNAME);
 	close (fd);
 	return (true);
 }
 
-bool	checknumbers(char **colors)
+bool	checknumbers(t_data *data, char **colors)
 {
 	int	i;
 
 	i = -1;
+	(void)data;
 	if (countecolors(colors) != 3)
-		return (printf(ERRNUMCOLOR), false);
+		all_errors(ERRNUMCOLOR);
 	if (ft_atoi(colors[0]) < 0 || ft_atoi(colors[0]) > 255)
-	{
-		printf(ERRSYNCOLOR);
-		return (false);
-	}
+		all_errors(ERRSYNCOLOR);
 	if (ft_atoi(colors[1]) < 0 || ft_atoi(colors[1]) > 255)
-	{
-		printf(ERRSYNCOLOR);
-		return (false);
-	}
+		all_errors(ERRSYNCOLOR);
 	if (ft_atoi(colors[2]) < 0 || ft_atoi(colors[2]) > 255)
-	{
-		printf(ERRSYNCOLOR);
-		return (false);
-	}
+		all_errors(ERRSYNCOLOR);
 	return (true);
 }
 
-bool	checkcoloref(t_data *data, char **elements)
+bool	checkcoloref(t_data *data, char *elements)
 {
 	int		i;
 	int		countcomma;
 
 	countcomma = 0;
 	i = -1;
-	while (elements[1] && elements[1][++i])
-		if (elements[1][i] == ',')
+	while (elements && elements[++i])
+		if (elements[i] == ',')
 			countcomma++;
 	if (countcomma != 2)
-		return (printf(ERRSYNCOLOR), false);
-	data->floor = ft_split(elements[1], ',');
-	return (checknumbers(data->floor));
+		all_errors(ERRSYNCOLOR);
+	data->floor = ft_split(elements, ',');
+	return (checknumbers(data, data->floor));
 }
 
-bool	checkcolorec(t_data *data, char **elements)
+bool	checkcolorec(t_data *data, char *elements)
 {
 	int		i;
 	int		countcomma;
 
 	countcomma = 0;
 	i = -1;
-	while (elements[1] && elements[1][++i])
-		if (elements[1][i] == ',')
+	while (elements && elements[++i])
+		if (elements[i] == ',')
 			countcomma++;
 	if (countcomma != 2)
-		return (printf(ERRSYNCOLOR), false);
-	data->ceil = ft_split(elements[1], ',');
-	return (checknumbers(data->ceil));
+		all_errors(ERRSYNCOLOR);
+	data->ceil = ft_split(elements, ',');
+	return (checknumbers(data, data->ceil));
 }

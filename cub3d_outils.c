@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_outils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:53:36 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/10 18:35:25 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:10:07 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	exit_program(t_all *cub)
 	}
 	free(cub->walls);
 	free(cub->ray);
-	free(cub->map);
+	ft_free(cub->map->ceil);
+	ft_free(cub->map->floor);
 	exit(0);
 }
 

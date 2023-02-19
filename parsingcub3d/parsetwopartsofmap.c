@@ -3,64 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   parsetwopartsofmap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 22:10:20 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/11 19:33:08 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:12:23 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	initdirectioncolor(t_data *data)
+void	checkduplicate(t_data *data)
 {
-	data->counter = 0;
-	data->c = 0;
-	data->f = 0;
-	data->we = 0;
-	data->ea = 0;
-	data->so = 0;
-	data->no = 0;
-	data->x = 0;
+	int	i;
+
+	i = -1;
+	while (data->texturecolorkey[++i])
+	{
+		if (!ft_strcmp(data->texturecolorkey[i], "SO"))
+			data->so++;
+		else if (!ft_strcmp(data->texturecolorkey[i], "NO"))
+			data->no++;
+		else if (!ft_strcmp(data->texturecolorkey[i], "EA"))
+			data->ea++;
+		else if (!ft_strcmp(data->texturecolorkey[i], "WE"))
+			data->we++;
+		else if (!ft_strcmp(data->texturecolorkey[i], "F"))
+			data->f++;
+		else if (!ft_strcmp(data->texturecolorkey[i], "C"))
+			data->c++;
+		data->flag++;
+	}
 }
 
-bool	checkfirstofmap(t_data *data)
+void	filltexturecolorenorm(t_data *data, int i, int j)
 {
-	if (data->we < 1 || data->no < 1 || data->ea < 1 || data->so < 1
-		|| data->f < 1 || data->c < 1)
-		return (printf(MISSKEY), false);
-	if (data->we > 1 || data->no > 1 || data->ea > 1 || data->so > 1
-		|| data->f > 1 || data->c > 1)
-		return (printf(ERRKEYS), false);
-	if (data->counter > 6)
-		return (printf(ERRINTR), false);
-	return (true);
+	data->texturecolor = ft_split(data->firstlines[i], ' ');
+	if (count(data->texturecolor) != 2)
+		all_errors(INVMAP);
+	data->texturecolor[1] = removenewline(data->texturecolor[1]);
+	data->texturecolorone[j] = ft_strdup(data->texturecolor[1]);
+	data->texturecolorkey[j] = ft_strdup(data->texturecolor[0]);
+	ft_free(data->texturecolor);
+}
+
+void	filltexturecolore(t_data *data)
+{
+	int		i;
+	int		j;
+	int		len;
+
+	i = -1;
+	len = calculatewithoutn(data, data->firstlines);
+	data->texturecolorkey = (char **)malloc(sizeof(char *) * (len + 1));
+	data->texturecolorone = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!data->texturecolorkey || !data->texturecolorone)
+		all_errors(ERRALLOC);
+	j = 0;
+	while (++i < data->countfirstlines)
+	{
+		while (data->firstlines[i] && data->firstlines[i][0] == '\n')
+			i++;
+		if (i < data->countfirstlines)
+		{
+			filltexturecolorenorm(data, i, j);
+			j++;
+		}
+	}
+	data->texturecolorkey[j] = NULL;
+	data->texturecolorone[j] = NULL;
 }
 
 bool	parsefirstofmap(t_data *data)
 {
-	char	**texturecolor;
+	int	i;
 
+	i = -1;
 	initdirectioncolor(data);
-	texturecolor = NULL;
-	data->x = 0;
-	while (data->x < data->countfirstlines)
-	{
-		while (data->firstlines[data->x]
-			&& data->firstlines[data->x][0] == '\n')
-			data->x++;
-		if (data->x < data->countfirstlines)
-		{
-			if (countargs(data->firstlines[data->x]) != 2)
-				return (printf(ERRFIRSTMAP), false);
-			texturecolor = ft_split(data->firstlines[data->x], ' ');
-			texturecolor[1] = ft_strcpy(texturecolor[1], texturecolor[1]);
-			if (checkkeys(data, texturecolor) == false)
-				return (false);
-			ft_free(texturecolor);
-		}
-		data->x++;
-	}
+	filltexturecolore(data);
+	checkduplicate(data);
+	checkfirstofmap(data);
+	checkkeys(data);
 	return (checkfirstofmap(data));
 }
 
@@ -77,8 +99,7 @@ bool	parsesecondofmap(t_data *data)
 	{
 		j = 0;
 		if (i < data->countsecondlines)
-			data->secondlines[i] = ft_strcpy(data->secondlines[i],
-					data->secondlines[i]);
+			data->secondlines[i] = removenewline(data->secondlines[i]);
 		len = ft_strlen(data->secondlines[i]);
 		if (len > data->biglength)
 			data->biglength = len;
@@ -86,9 +107,7 @@ bool	parsesecondofmap(t_data *data)
 			data->smalllength = len;
 	}
 	addspaces(data);
-	if (checkchar(data) == false)
-		return (false);
-	if (checkplayerstart(data) == false)
-		return (false);
+	checkchar(data);
+	checkplayerstart(data);
 	return (true);
 }
