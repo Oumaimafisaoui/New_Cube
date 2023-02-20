@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:39:22 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/02/15 13:15:03 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:40:58 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	decide_casting(t_all *cub, int j)
 		cub->var_d.steps = fabs(cub->var_d.dx);
 	else
 		cub->var_d.steps = fabs(cub->var_d.dy);
+	dda2(cub);
 }
 
 void	horizontal_inter(t_all *cub)

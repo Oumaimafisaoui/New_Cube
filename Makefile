@@ -1,6 +1,6 @@
 CC = cc
 RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror -Imlx -Ofast -ffast-math 
+CFLAGS = -Wall -Wextra -Werror -Imlx -Ofast -ffast-math
 
 SRC =  	parsingcub3d/libft/ft_split.c \
 		parsingcub3d/libft/ft_splitnewline.c\
