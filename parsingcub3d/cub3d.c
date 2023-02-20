@@ -6,7 +6,7 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:31:02 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/20 11:35:54 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:59:15 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ bool	check_arguments(int numofargs, char *mapname)
 			return (printf(ERRNAME), false);
 	}
 	else
-	{
-		ft_free(lastmap);
 		all_errors(ERRNAME);
-	}
 	ft_free(lastmap);
 	return (true);
 }
