@@ -3,32 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 12:17:38 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/11 19:25:02 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:10:59 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	*ft_strcpy(char *dest, char *src)
+char	*removenewline(char *str)
 {
-	size_t	i;
+	int		i;
+	char	*string;
 
 	i = 0;
-	dest = (char *)malloc(ft_strlen(src) + 1);
-	if (!dest)
-		return (NULL);
-	while (src[i] && src[i] != '\n')
-	{
-		dest[i] = (char)src[i];
+	while (str[i] && str[i] != '\n')
 		i++;
-	}
-	dest[i] = '\0';
-	i = 0;
-	while (src[i] != '\0')
-		i++;
-	free(src);
-	return (dest);
+	string = (char *)malloc(sizeof(char) * (i + 1));
+	if (!string)
+		all_errors(ERRALLOC);
+	i = -1;
+	while (str[++i] && str[i] != '\n')
+		string[i] = str[i];
+	string[i] = '\0';
+	free(str);
+	return (string);
 }

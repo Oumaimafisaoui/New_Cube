@@ -6,7 +6,7 @@
 /*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 23:31:16 by ataji             #+#    #+#             */
-/*   Updated: 2023/01/15 13:23:20 by ataji            ###   ########.fr       */
+/*   Updated: 2023/02/19 16:13:27 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,14 @@ bool	dividingmap(t_data *data)
 	data->secondlines = (char **)malloc(sizeof(char *) \
 		* (data->countsecondlines + 1));
 	if (!data->firstlines || !data->secondlines)
-		return (false);
+		all_errors(ERRALLOC);
 	first(data);
 	second(data);
 	if (!data->countsecondlines || !data->countfirstlines)
-		return (printf(BIGERR), false);
+	{
+		ft_free(data->firstlines);
+		ft_free(data->secondlines);
+		all_errors(BIGERR);
+	}
 	return (true);
 }

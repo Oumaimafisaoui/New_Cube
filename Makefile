@@ -21,6 +21,7 @@ SRC =  	parsingcub3d/libft/ft_split.c \
 		parsingcub3d/dividingmap.c \
 		parsingcub3d/checkzero.c \
 		parsingcub3d/parsetwopartsofmap.c \
+		parsingcub3d/norm.c \
 		main.c \
 		ray_tools.c\
 		tools_casting.c\

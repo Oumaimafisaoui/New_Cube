@@ -6,18 +6,31 @@
 /*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:31:02 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/18 10:57:20 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:35:54 by oufisaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+size_t	countdoublepoint(char **tab)
+{
+	size_t	len;
+
+	len = 0;
+	while (tab[len])
+		len++;
+	return (len);
+}
+
 bool	check_arguments(int numofargs, char *mapname)
 {
 	char	**lastmap;
+	size_t	len;
 
+	lastmap = NULL;
+	len = 0;
 	if (numofargs != 2)
-		return (printf(ERRARGUMENTS), false);
+		all_errors(ERRARGUMENTS);
 	if (check_point(mapname) == true)
 	{
 		lastmap = ft_split(mapname, '.');
@@ -25,7 +38,10 @@ bool	check_arguments(int numofargs, char *mapname)
 			return (printf(ERRNAME), false);
 	}
 	else
-		return (printf(ERRNAME), false);
+	{
+		ft_free(lastmap);
+		all_errors(ERRNAME);
+	}
 	ft_free(lastmap);
 	return (true);
 }
@@ -37,16 +53,13 @@ bool	readfromfile(char *mapname, t_data *data)
 	data->i = -1;
 	data->countlines = countlines(mapname);
 	if (data->countlines == -1)
-		return (false);
+		all_errors(ERREMPTY);
 	data->allmap = (char **)malloc(sizeof(char *) * (data->countlines + 1));
 	if (!data->allmap)
-		return (false);
+		all_errors(ERRALLOC);
 	fd = open(mapname, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("ERROR ");
-		exit(1);
-	}
+		all_errors(ERRFILE);
 	while (++data->i < data->countlines)
 		data->allmap[data->i] = get_next_line(fd);
 	data->allmap[data->i] = NULL;
@@ -56,26 +69,19 @@ bool	readfromfile(char *mapname, t_data *data)
 
 bool	parsemap(t_data *data)
 {
-	if (parsefirstofmap(data) == false)
-		return (false);
-	if (parsesecondofmap(data) == false)
-		return (false);
-	if (parsecharsecondmap(data) == false)
-		return (false);
+	parsefirstofmap(data);
+	parsesecondofmap(data);
+	parsecharsecondmap(data);
 	return (true);
 }
 
 bool	allparsing(int ac, char **av, t_data *data)
 {
-	if (check_arguments(ac, av[1]) == false)
-		return (false);
-	if (readfromfile(av[1], data) == false)
-		return (false);
+	check_arguments(ac, av[1]);
+	readfromfile(av[1], data);
 	data->countfirstlines = countlinesfirstmap(data);
 	data->countsecondlines = countlinessecondmap(data);
-	if (dividingmap(data) == false)
-		return (false);
-	if (parsemap(data) == false)
-		return (false);
+	dividingmap(data);
+	parsemap(data);
 	return (true);
 }

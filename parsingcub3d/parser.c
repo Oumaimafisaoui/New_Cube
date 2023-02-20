@@ -3,76 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 11:54:51 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/07 19:16:30 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:11:47 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	checktexture(t_data *data, char **elements)
+bool	checktexture(t_data *data)
 {
-	if (!ft_strcmp(elements[0], "WE"))
+	int	i;
+
+	i = -1;
+	while (data->texturecolorkey[++i])
 	{
-		if (checkfile(elements) == false)
-			return (false);
-		data->we++;
-	}
-	if (!ft_strcmp(elements[0], "SO"))
-	{
-		if (checkfile(elements) == false)
-			return (false);
-		data->so++;
-	}
-	if (!ft_strcmp(elements[0], "NO"))
-	{
-		if (checkfile(elements) == false)
-			return (false);
-		data->no++;
-	}
-	if (!ft_strcmp(elements[0], "EA"))
-	{
-		if (checkfile(elements) == false)
-			return (false);
-		data->ea++;
+		if (!ft_strcmp(data->texturecolorkey[i], "WE"))
+			checkfile(data->texturecolorone[i]);
+		if (!ft_strcmp(data->texturecolorkey[i], "SO"))
+			checkfile(data->texturecolorone[i]);
+		if (!ft_strcmp(data->texturecolorkey[i], "NO"))
+			checkfile(data->texturecolorone[i]);
+		if (!ft_strcmp(data->texturecolorkey[i], "EA"))
+			checkfile(data->texturecolorone[i]);
 	}
 	return (true);
 }
 
-void	settexture(t_data *data, char **elements)
+void	settexture(t_data *data, int i)
 {
-	if (!ft_strcmp(elements[0], "EA"))
-		data->texture[EA] = ft_strdup(elements[1]);
-	else if (!ft_strcmp(elements[0], "WE"))
-		data->texture[WE] = ft_strdup(elements[1]);
-	else if (!ft_strcmp(elements[0], "SO"))
-		data->texture[SO] = ft_strdup(elements[1]);
-	else if (!ft_strcmp(elements[0], "NO"))
-		data->texture[NO] = ft_strdup(elements[1]);
+	if (!ft_strcmp(data->texturecolorkey[i], "EA"))
+		data->texture[EA] = ft_strdup(data->texturecolorone[i]);
+	else if (!ft_strcmp(data->texturecolorkey[i], "WE"))
+		data->texture[WE] = ft_strdup(data->texturecolorone[i]);
+	else if (!ft_strcmp(data->texturecolorkey[i], "SO"))
+		data->texture[SO] = ft_strdup(data->texturecolorone[i]);
+	else if (!ft_strcmp(data->texturecolorkey[i], "NO"))
+		data->texture[NO] = ft_strdup(data->texturecolorone[i]);
 }
 
-bool	checkkeys(t_data *data, char **elements)
+bool	checkkeys(t_data *data)
 {
-	if (!ft_strcmp(elements[0], "WE") || !ft_strcmp(elements[0], "SO")
-		|| !ft_strcmp(elements[0], "NO") || !ft_strcmp(elements[0], "EA"))
+	int	i;
+
+	i = -1;
+	while (data->texturecolorkey[++i])
 	{
-		settexture(data, elements);
-		if (checktexture(data, elements) == false)
-			return (false);
-		data->counter++;
-	}
-	else if (!ft_strcmp(elements[0], "F") || !ft_strcmp(elements[0], "C"))
-	{
-		if (checkrgb(data, elements) == false)
-			return (false);
-		data->counter++;
-	}
-	else
-	{
-		printf(ERRSYNMAP);
-		return (false);
+		if (!ft_strcmp(data->texturecolorkey[i], "WE")
+			|| !ft_strcmp(data->texturecolorkey[i], "SO")
+			|| !ft_strcmp(data->texturecolorkey[i], "NO")
+			|| !ft_strcmp(data->texturecolorkey[i], "EA"))
+		{
+			settexture(data, i);
+			checktexture(data);
+		}
+		else if (!ft_strcmp(data->texturecolorkey[i], "F")
+			|| !ft_strcmp(data->texturecolorkey[i], "C"))
+			checkrgb(data, data->texturecolorkey[i], data->texturecolorone[i]);
+		else
+			all_errors(ERRSYNMAP);
 	}
 	return (true);
 }
@@ -97,7 +87,7 @@ bool	checkplayerstart(t_data *data)
 		}
 	}
 	if (player != 1)
-		return (printf(PLAYERSTART), false);
+		all_errors(PLAYERSTART);
 	return (true);
 }
 
@@ -116,7 +106,7 @@ bool	parsecharsecondmap(t_data *data)
 			helper = data->secondlines[i][j];
 			if (helper != '1' && helper != '0' && helper != 'N' && helper != 'W'
 				&& helper != 'E' && helper != 'S' && helper != ' ')
-				return (printf(INTRUDER), false);
+				all_errors(INTRUDER);
 		}
 	}
 	return (true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ataji <ataji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:28:32 by ataji             #+#    #+#             */
-/*   Updated: 2023/02/11 19:25:24 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:20:56 by ataji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define ERRINTR "ERROR : Attention we have an intruder in first part of map\n"
 # define BIGERR "ERROR : Attention don't have first part of map or\
  second part of map\n"
+# define ERRFILE "ERROR : No such file or directory\n"
+# define ERREMPTY "ERROR : Empty map\n"
+# define ERRALLOC "ERROR : Bad allocation\n"
 
 # define IMG_SIZE 9
 # define SIZE_MINI 10
@@ -70,10 +73,14 @@ typedef struct s_img
 
 typedef struct s_data
 {
+	int				flag;
 	int				norm;
 	int				nor;
 	char			**allmap;
 	char			**firstlines;
+	char			**texturecolor;
+	char			**texturecolorkey;
+	char			**texturecolorone;
 	char			**secondlines;
 	int				countlines;
 	int				countfirstlines;
@@ -114,7 +121,10 @@ typedef struct s_data
 	t_img			textureimg[4];
 }t_data;
 
+char	*removenewline(char *str);
+
 /**************************** libft ****************************/
+size_t	ft_strlen(char const *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		count_words(const char *str, char c);
 char	**ft_freeing(char **tab);
@@ -123,10 +133,8 @@ char	**ft_split(char const *s, char c);
 char	**set_wordsnewline(char const *s, char c);
 char	**ft_splitnewline(char const *s, char c);
 int		ft_strcmp(const char *str1, const char *str2);
-size_t	ft_strlen(char const *str);
 int		ft_atoi(const char *str);
 char	*ft_strdup(const char *s1);
-char	*ft_strcpy(char *dest, char *src);
 char	*ft_strchr(const char *s, int c);
 int		ft_isdigit(int c);
 
@@ -141,115 +149,63 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
 
 /**************************** cub3d.c ****************************/
+size_t	countdoublepoint(char **tab);
 bool	check_arguments(int numofargs, char *mapname);
 bool	readfromfile(char *mapname, t_data *data);
-
-/**************************** cub3d_utils.c ****************************/
-void	ft_free(char **tab);
-bool	check_point(char *name);
-size_t	countecolors(char **colors);
-char	*returnline_aa(char *str, size_t len);
-void	addspaces(t_data *data);
-
-/**************************** compass_colore.c ****************************/
-bool	checkrgb(t_data *data, char **elements);
-bool	checkfile(char **elements);
-bool	checktexture(t_data *data, char **elements);
-bool	checknumbers(char **colors);
-bool	checkcoloref(t_data *data, char **elements);
-bool	checkcolorec(t_data *data, char **elements);
-
-/**************************** counters.c ****************************/
-int		countlinesfirstmap(t_data *data);
-int		countlines(char *mapname);
-int		countargs(char *firstline);
-int		countlinessecondmap(t_data *data);
-
-/**************************** parser.c ****************************/
-bool	checkkeys(t_data *data, char **elements);
-bool	checkplayerstart(t_data *data);
-bool	parsecharsecondmap(t_data *data);
 bool	parsemap(t_data *data);
 bool	allparsing(int ac, char **av, t_data *data);
 
+/**************************** cub3d_utils.c ****************************/
+char	*returnline_aa(char *str, size_t len);
+void	addspaces(t_data *data);
+size_t	countecolors(char **colors);
+void	ft_free(char **tab);
+bool	check_point(char *name);
+
+/**************************** compass_colore.c ****************************/
+bool	checkrgb(t_data *data, char *elements, char *colors);
+bool	checkfile(char *elements);
+bool	checknumbers(t_data *data, char **colors);
+bool	checkcoloref(t_data *data, char *elements);
+bool	checkcolorec(t_data *data, char *elements);
+
+/**************************** counters.c ****************************/
+void	all_errors(char *str);
+int		countargs(char *firstline);
+int		countlinesfirstmap(t_data *data);
+int		countlinessecondmap(t_data *data);
+int		countlines(char *mapname);
+
 /**************************** parser.c ****************************/
+bool	checktexture(t_data *data);
+void	settexture(t_data *data, int i);
+bool	checkkeys(t_data *data);
+bool	checkplayerstart(t_data *data);
+bool	parsecharsecondmap(t_data *data);
+
+/**************************** dividingmap.c ****************************/
 void	first(t_data *data);		
 void	second(t_data *data);
 bool	dividingmap(t_data *data);
 
-/**************************** checkchar.c ****************************/
+/**************************** checkzero.c ****************************/
 bool	checkrightleftchar(char *line);
+bool	checkfirstandlastline(char **line, t_data *data);
 bool	checkbottomtopchar(char **line, t_data *data);
+bool	checkfirstchar(t_data *data);
 bool	checkchar(t_data *data);
 
+/**************************** norm.c ****************************/
+bool	checkfirstofmap(t_data *data);
+void	initdirectioncolor(t_data *data);
+int		calculatewithoutn(t_data *data, char **lines);
+int		count(char **tab);
+
 /**************************** parsetwopartsofmap.c ****************************/
+void	checkduplicate(t_data *data);
+void	filltexturecolorenorm(t_data *data, int i, int j);
+void	filltexturecolore(t_data *data);
 bool	parsefirstofmap(t_data *data);
 bool	parsesecondofmap(t_data *data);
-
-/************************** generate3dprojection.c **************************/
-// void	generate3dprojection(t_data *data);
-
-/************************** settexture.c **************************/
-// void	createtextureimg(t_data *data);
-// bool	checktexture(t_data *data, char **elements);
-void	settexture(t_data *data, char **elements);
-
-/************************** calculatexy.c **************************/
-// int		calculatex(t_data *data, int i, int direction);
-// int		calculatey(t_data *data, int j, int direction);
-
-/************************** colors.c **************************/
-// int		createcolorceil(t_data *data);
-// int		createcolorfloor(t_data *data);
-// int		returncolor(t_data *data, int direction, int j);
-// int		setcolor(t_data *data, int i, int j);
-
-/**************************** raycasting ****************************/
-// void	initialisation(t_data *data);
-// void	error_msg(char *str);
-// int		init_window(t_data *data);
-// void	find_p(t_data *data);
-// int		check_next_tile(t_data *data, char direction, char tile);
-// void	move_player(t_data *data, char direction);
-// int		handle_keypress(int keysym, t_data *data);
-// void	ft_reset(t_data *data, char direction);
-// int		handle_keyrelease(int keysym, t_data *data);
-// // int		handle_btnrealease(int keycode, t_var *var);
-// void	ft_put(t_data *data, int x, int y, int color);
-// void	ft_put_mini(t_data *data, int x, int y, int color);
-// void	draw_circle(t_data *data, int x, int y, int r);
-// int		render_map(t_data *data);
-// void	render_player(t_data *data, int r);
-// int		render(t_data *data);
-// void	loop_mlx(t_data *data);
-// int		wall(char *wall);
-// void	draw_case(t_data *data, int color);
-// void	square(t_data *data, int x, int y, int color);
-// double	next_x_pos(t_data *data);
-// double	next_y_pos(t_data *data);
-// double	next_x_pos_side(t_data *data);
-// double	next_y_pos_side(t_data *data);
-// void	check_wall_ray(t_data *data, double x, double y, double angle);
-// void	set_rotation(t_data *data, char c);
-// double	mod(double x, double y);
-// double	calcule_dis(double x1, double y1, double x2, double y2);
-// void	calcule_distances(t_data *data);
-// void	check_hor_int(t_data *data, double x, double y, double ray_angle);
-// void	check_ver_int(t_data *data, double x, double y, double ray_angle);
-// void	boucle_for_wall_hor(t_data *data);
-// void	boucle_for_wall_ver(t_data *data);
-// void	check_dir_ray(t_data *data, double ray_angle);
-// void	render_wall_3d(t_data *data);
-// void	render_rays(t_data *data);
-// void	clear_color_buffer(t_data *data, int color);
-// int		trgb_integer(int t, int r, int g, int b);
-// void	img_no(t_data *data, int i, int j, int x);
-// void	img_so(t_data *data, int i, int j, int x);
-// void	img_we(t_data *data, int i, int j, int x);
-// void	img_ea(t_data *data, int i, int j, int x);
-// int		calc_x(t_data *data, int i);
-// int		handle_mouse(int x, int y, t_data *data);
-// void	unit_mlx_p(t_data *data);
-// int		is_player(char c);
 
 #endif
