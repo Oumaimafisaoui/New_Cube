@@ -1,2 +1,2 @@
 # New_Cube
-Cube3d
+Cub3D
